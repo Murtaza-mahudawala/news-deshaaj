@@ -22,9 +22,14 @@ function getCategorySlug(categoryName: string): string {
   return entry ? entry[0] : '';
 }
 
-function getBreadcrumbs(path: string, news: NewsItem[]) {
+interface BreadcrumbItem {
+  label: string;
+  href: string;
+}
+
+function getBreadcrumbs(path: string, news: NewsItem[]): BreadcrumbItem[] {
   const parts = path.split('/').filter(Boolean);
-  const crumbs = [];
+  const crumbs: BreadcrumbItem[] = [];
 
   // Don't show breadcrumbs on home page
   if (path === '/') {

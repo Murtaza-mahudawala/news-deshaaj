@@ -1,5 +1,7 @@
 // Data utility functions for news data
-import newsData from '@/public/data/news.json';
+// Note: In production, this would typically fetch from an API or database
+// For now, we'll import from the data directory in the project root
+import newsData from '../data/news.json';
 
 export interface NewsItem {
   Active_Flag: string;
