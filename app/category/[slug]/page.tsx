@@ -1,21 +1,12 @@
+import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import NewsCard from '@/components/NewsCard';
 import AdSection from '@/components/AdSection';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import Footer from '@/components/Footer';
-import newsData from '@/data/news.json';
+import { getNewsByCategory, getNewsChunks, NewsItem } from '@/lib/data';
 
-interface NewsItem {
-  Active_Flag: string;
-  Categrory_Name: string;
-  Image: string;
-  Insert_Date: string;
-  News_Content: string;
-  News_Source: string;
-  News_Title: string;
-  News_Id: string;
-  Slug: string;
-}
+// NewsItem interface is now imported from @/lib/data
 
 const categoryMap: Record<string, { name: string; title: string }> = {
   ghar: { name: 'घर', title: 'घर समाचार' },
@@ -37,18 +28,30 @@ export default function CategoryPage({ params }: { params: { slug: string } }) {
   const category = categoryMap[params.slug];
 
   if (!category) {
-    return null;
+    return (
+      <div className="min-h-screen bg-gray-50">
+        <Navbar />
+        <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <div className="text-center py-12">
+            <h1 className="text-4xl font-bold text-gray-900 mb-4">404</h1>
+            <p className="text-gray-600 text-lg mb-8">श्रेणी नहीं मिली</p>
+            <Link 
+              href="/" 
+              className="inline-block bg-red-600 text-white px-6 py-3 rounded-lg hover:bg-red-700 transition-colors"
+            >
+              होम पेज पर वापस जाएं
+            </Link>
+          </div>
+        </main>
+        <Footer />
+      </div>
+    );
   }
 
-  const news = newsData as NewsItem[];
-  const filteredNews = news.filter(
-    (item) => item.Active_Flag === 'Y' && item.Categrory_Name === category.name
-  );
+  const filteredNews = getNewsByCategory(category.name)
+    .sort((a, b) => new Date(b.Insert_Date).getTime() - new Date(a.Insert_Date).getTime());
 
-  const newsChunks: NewsItem[][] = [];
-  for (let i = 0; i < filteredNews.length; i += 8) {
-    newsChunks.push(filteredNews.slice(i, i + 8));
-  }
+  const newsChunks = getNewsChunks(filteredNews, 8);
 
   return (
     <div className="min-h-screen bg-gray-50">

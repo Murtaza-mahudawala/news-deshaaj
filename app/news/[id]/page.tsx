@@ -1,30 +1,19 @@
 import Navbar from '@/components/Navbar';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import Footer from '@/components/Footer';
-import newsData from '@/data/news.json';
+import { getNewsById, getAllNews, NewsItem } from '@/lib/data';
 import Image from 'next/image';
 import { clampHeadline, clampMetaDescription } from '@/lib/utils';
 
-interface NewsItem {
-  Active_Flag: string;
-  Categrory_Name: string;
-  Image: string;
-  Insert_Date: string;
-  News_Content: string;
-  News_Source: string;
-  News_Title: string;
-  News_Id: string;
-  Slug: string;
-}
+// NewsItem interface is now imported from @/lib/data
 
 export function generateStaticParams() {
-  const news = newsData as NewsItem[];
+  const news = getAllNews();
   return news.map((n) => ({ id: n.News_Id }));
 }
 
 export default function NewsDetailPage({ params }: { params: { id: string } }) {
-  const news = newsData as NewsItem[];
-  const item = news.find((n) => n.News_Id === params.id);
+  const item = getNewsById(params.id);
 
   if (!item) {
     return (

@@ -5,19 +5,7 @@ import Breadcrumbs from '@/components/Breadcrumbs';
 import Hero from '@/components/Hero';
 import FeaturedNewsGrid from '@/components/FeaturedNewsGrid';
 import Footer from '@/components/Footer';
-import newsData from '@/data/news.json';
-
-interface NewsItem {
-  Active_Flag: string;
-  Categrory_Name: string;
-  Image: string;
-  Insert_Date: string;
-  News_Content: string;
-  News_Source: string;
-  News_Title: string;
-  News_Id: string;
-  Slug: string;
-}
+import { getAllNews, NewsItem } from '@/lib/data';
 
 const categorySections = [
   { title: 'व्यापार समाचार', categoryName: 'व्यापार समाचार', link: '/category/business' },
@@ -28,7 +16,7 @@ const categorySections = [
 ];
 
 export default function Home() {
-  const news = newsData as NewsItem[];
+  const news = getAllNews();
 
   return (
     <div className="min-h-screen bg-gray-50">

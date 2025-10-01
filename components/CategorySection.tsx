@@ -2,18 +2,7 @@ import Link from 'next/link';
 import { ChevronRight } from 'lucide-react';
 import NewsCard from './NewsCard';
 import { ReactNode } from 'react';
-
-interface NewsItem {
-  Active_Flag: string;
-  Categrory_Name: string;
-  Image: string;
-  Insert_Date: string;
-  News_Content: string;
-  News_Source: string;
-  News_Title: string;
-  News_Id: string;
-  Slug: string;
-}
+import { NewsItem } from '@/lib/data';
 
 interface CategorySectionProps {
   title: ReactNode;

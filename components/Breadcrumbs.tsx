@@ -1,15 +1,26 @@
 "use client";
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import newsData from '@/data/news.json';
+import { getAllNews, NewsItem } from '@/lib/data';
 
-// Helper to get category and article info from JSON
-type NewsItem = {
-  News_Id: string;
-  Categrory_Name: string;
-  News_Title: string;
-  Slug: string;
+// NewsItem type is now imported from @/lib/data
+
+// Category mapping to match the category page slugs
+const categoryMap: Record<string, { name: string; title: string }> = {
+  ghar: { name: 'घर', title: 'घर समाचार' },
+  cricket: { name: 'क्रिकेट', title: 'क्रिकेट समाचार' },
+  desh: { name: 'देश', title: 'देश समाचार' },
+  general: { name: 'सामान्य', title: 'सामान्य समाचार' },
+  business: { name: 'व्यापार समाचार', title: 'व्यापार समाचार' },
+  national: { name: 'राष्ट्रीय समाचार', title: 'राष्ट्रीय समाचार' },
+  stock: { name: 'शेयर बाज़ार', title: 'शेयर बाज़ार समाचार' },
 };
+
+// Helper function to get category slug from category name
+function getCategorySlug(categoryName: string): string {
+  const entry = Object.entries(categoryMap).find(([_, value]) => value.name === categoryName);
+  return entry ? entry[0] : '';
+}
 
 function getBreadcrumbs(path: string, news: NewsItem[]) {
   const parts = path.split('/').filter(Boolean);
@@ -24,18 +35,23 @@ function getBreadcrumbs(path: string, news: NewsItem[]) {
   crumbs.push({ label: 'होम', href: '/' });
 
   if (parts[0] === 'category' && parts[1]) {
-    const category = news.find(n => n.Categrory_Name && n.Slug === parts[1]);
-    if (category) {
-      crumbs.push({ label: category.Categrory_Name, href: `/category/${category.Slug}` });
+    const categorySlug = parts[1];
+    const categoryInfo = categoryMap[categorySlug];
+    if (categoryInfo) {
+      crumbs.push({ label: categoryInfo.name, href: `/category/${categorySlug}` });
     } else {
-      crumbs.push({ label: decodeURIComponent(parts[1]), href: `/category/${parts[1]}` });
+      crumbs.push({ label: decodeURIComponent(categorySlug), href: `/category/${categorySlug}` });
     }
   }
+  
   // If article page under /news/[id]
   if (parts[0] === 'news' && parts[1]) {
     const article = news.find(n => n.News_Id === parts[1]);
     if (article) {
-      crumbs.push({ label: article.Categrory_Name, href: `/category/${article.Slug || ''}` });
+      const categorySlug = getCategorySlug(article.Categrory_Name);
+      if (categorySlug) {
+        crumbs.push({ label: article.Categrory_Name, href: `/category/${categorySlug}` });
+      }
       crumbs.push({ label: article.News_Title, href: `/news/${parts[1]}` });
     }
   }
@@ -44,8 +60,7 @@ function getBreadcrumbs(path: string, news: NewsItem[]) {
 
 export default function Breadcrumbs() {
   const pathname = usePathname();
-  // @ts-ignore
-  const news: NewsItem[] = newsData;
+  const news = getAllNews();
   const crumbs = getBreadcrumbs(pathname, news);
 
   return (

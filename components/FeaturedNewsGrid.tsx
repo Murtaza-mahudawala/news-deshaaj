@@ -1,14 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-
-type NewsItem = {
-  News_Id: string;
-  News_Title: string;
-  News_Content: string;
-  Image: string;
-  Categrory_Name: string;
-  Insert_Date: string;
-};
+import { NewsItem } from '@/lib/data';
 
 interface FeaturedNewsGridProps {
   news: NewsItem[];
