@@ -1,5 +1,6 @@
 import Navbar from '@/components/Navbar';
 import Breadcrumbs from '@/components/Breadcrumbs';
+import Footer from '@/components/Footer';
 import newsData from '@/data/news.json';
 import Image from 'next/image';
 import { clampHeadline, clampMetaDescription } from '@/lib/utils';
@@ -79,6 +80,7 @@ export default function NewsDetailPage({ params }: { params: { id: string } }) {
           </p>
         </article>
       </main>
+      <Footer />
     </div>
   );
 }

@@ -4,10 +4,11 @@ export default function Hero() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10 lg:py-12">
         <div className="max-w-3xl">
           <h1
-            className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-red-700 tracking-tight"
+            className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-red-700 tracking-tight leading-relaxed"
             style={{ fontFamily: 'var(--font-roboto-slab)' }}
           >
-            देश आज – आपकी ताज़ा ख़बरें, विश्लेषण और खास रिपोर्ट
+            <div>देश आज – आपकी ताज़ा ख़बरें,</div>
+            <div className="mt-2">विश्लेषण और खास रिपोर्ट</div>
           </h1>
           <p
             className="mt-3 sm:mt-4 text-sm sm:text-base md:text-lg text-gray-700"
@@ -27,6 +28,7 @@ export default function Hero() {
     </section>
   );
 }
+
 
 
 

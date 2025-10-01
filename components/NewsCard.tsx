@@ -30,46 +30,52 @@ export default function NewsCard({ news }: NewsCardProps) {
   return (
     <Link href={`/news/${news.News_Id}`} className="block h-full">
       <article className="h-full bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 flex flex-col">
-      <div className="relative h-48 w-full">
-        <Image
-          src={news.Image}
-          alt={news.News_Title}
-          fill
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-          className="object-cover"
-        />
-      </div>
-
-      <div className="p-4 flex-1 flex flex-col">
-        <div className="mb-2">
-          <span className="inline-block px-3 py-1 text-xs font-semibold text-white bg-red-600 rounded-full">
-            {news.Categrory_Name}
-          </span>
+        {/* Fixed height image section */}
+        <div className="relative h-48 w-full">
+          <Image
+            src={news.Image}
+            alt={news.News_Title}
+            fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            className="object-cover"
+          />
         </div>
 
-        <h2
-          className="text-xl font-bold text-gray-900 mb-2 leading-snug line-clamp-2 min-h-[56px]"
-          style={{ fontFamily: 'var(--font-roboto-slab)' }}
-        >
-          {news.News_Title}
-        </h2>
+        {/* Fixed content section */}
+        <div className="p-4 flex-1 flex flex-col">
+          {/* Category badge */}
+          <div className="mb-3">
+            <span className="inline-block px-3 py-1 text-xs font-semibold text-white bg-red-600 rounded-full">
+              {news.Categrory_Name}
+            </span>
+          </div>
 
-        <p
-          className="text-gray-700 text-sm mb-3 leading-6 line-clamp-3 min-h-[72px]"
-          style={{ fontFamily: 'var(--font-open-sans)', lineHeight: '1.5' }}
-        >
-          {news.News_Content}
-        </p>
+          {/* Fixed height title */}
+          <h2
+            className="text-lg font-bold text-gray-900 mb-3 leading-snug line-clamp-2 min-h-[48px]"
+            style={{ fontFamily: 'var(--font-roboto-slab)' }}
+          >
+            {news.News_Title}
+          </h2>
 
-        <div className="mt-auto flex items-center justify-between text-xs text-gray-500">
-          <span style={{ fontFamily: 'var(--font-open-sans)' }}>
-            {news.News_Source}
-          </span>
-          <span style={{ fontFamily: 'var(--font-open-sans)' }} suppressHydrationWarning>
-            {formattedDate}
-          </span>
+          {/* Fixed height content */}
+          <p
+            className="text-gray-700 text-sm mb-4 leading-6 line-clamp-3 min-h-[66px]"
+            style={{ fontFamily: 'var(--font-open-sans)' }}
+          >
+            {news.News_Content}
+          </p>
+
+          {/* Fixed footer */}
+          <div className="mt-auto flex items-center justify-between text-xs text-gray-500 pt-2 border-t border-gray-100">
+            <span style={{ fontFamily: 'var(--font-open-sans)' }}>
+              {news.News_Source}
+            </span>
+            <span style={{ fontFamily: 'var(--font-open-sans)' }} suppressHydrationWarning>
+              {formattedDate}
+            </span>
+          </div>
         </div>
-      </div>
       </article>
     </Link>
   );

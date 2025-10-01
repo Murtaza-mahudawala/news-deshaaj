@@ -4,6 +4,7 @@ import AdSection from '@/components/AdSection';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import Hero from '@/components/Hero';
 import FeaturedNewsGrid from '@/components/FeaturedNewsGrid';
+import Footer from '@/components/Footer';
 import newsData from '@/data/news.json';
 
 interface NewsItem {
@@ -19,7 +20,6 @@ interface NewsItem {
 }
 
 const categorySections = [
-  { title: 'ताजा खबर', categoryName: 'क्रिकेट', link: '/category/cricket' },
   { title: 'व्यापार समाचार', categoryName: 'व्यापार समाचार', link: '/category/business' },
   { title: 'राष्ट्रीय समाचार', categoryName: 'राष्ट्रीय समाचार', link: '/category/national' },
   { title: 'शेयर बाज़ार', categoryName: 'शेयर बाज़ार', link: '/category/stock' },
@@ -59,6 +59,7 @@ export default function Home() {
           </div>
         ))}
       </main>
+      <Footer />
     </div>
   );
 }

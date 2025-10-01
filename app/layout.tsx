@@ -1,7 +1,6 @@
 import './globals.css';
 import type { Metadata } from 'next';
 import { Roboto_Slab, Open_Sans } from 'next/font/google';
-import Footer from '@/components/Footer';
 
 const robotoSlab = Roboto_Slab({
   subsets: ['latin'],
@@ -33,7 +32,6 @@ export default function RootLayout({
       </head>
       <body className={`${robotoSlab.variable} ${openSans.variable}`}>
         {children}
-        <Footer />
       </body>
     </html>
   );

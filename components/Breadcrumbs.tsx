@@ -13,7 +13,15 @@ type NewsItem = {
 
 function getBreadcrumbs(path: string, news: NewsItem[]) {
   const parts = path.split('/').filter(Boolean);
-  const crumbs = [{ label: 'होम', href: '/' }];
+  const crumbs = [];
+
+  // Don't show breadcrumbs on home page
+  if (path === '/') {
+    return crumbs;
+  }
+
+  // Add Home breadcrumb for other pages
+  crumbs.push({ label: 'होम', href: '/' });
 
   if (parts[0] === 'category' && parts[1]) {
     const category = news.find(n => n.Categrory_Name && n.Slug === parts[1]);

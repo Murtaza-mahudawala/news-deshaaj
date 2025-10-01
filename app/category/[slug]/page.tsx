@@ -2,6 +2,7 @@ import Navbar from '@/components/Navbar';
 import NewsCard from '@/components/NewsCard';
 import AdSection from '@/components/AdSection';
 import Breadcrumbs from '@/components/Breadcrumbs';
+import Footer from '@/components/Footer';
 import newsData from '@/data/news.json';
 
 interface NewsItem {
@@ -82,6 +83,7 @@ export default function CategoryPage({ params }: { params: { slug: string } }) {
           </div>
         )}
       </main>
+      <Footer />
     </div>
   );
 }
