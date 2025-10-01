@@ -9,7 +9,6 @@ const categories = [
 		{ id: 'Home', label: 'सभी', value: '', href: '/' },
 	{ id: 'cricket', label: 'क्रिकेट', value: 'क्रिकेट', href: '/category/cricket' },
 	{ id: 'country', label: 'देश', value: 'देश', href: '/category/desh' },
-	{ id: 'current', label: 'हालात', value: 'हालात', href: '/category/halat' },
 	{ id: 'general', label: 'सामान्य', value: 'सामान्य', href: '/category/general' },
 	{ id: 'business', label: 'व्यापार समाचार', value: 'व्यापार समाचार', href: '/category/business' },
 	{ id: 'national', label: 'राष्ट्रीय समाचार', value: 'राष्ट्रीय समाचार', href: '/category/national' },
@@ -28,9 +27,9 @@ export default function Navbar() {
                                                                     <Image
                                                                         src="/logo.png"
                                                                         alt="Desh Aaj Logo"
-                                                                        width={320}
-                                                                        height={96}
-                                                                        className="h-20 w-auto max-w-[340px] min-w-[120px] object-contain"
+                                                                        width={250}
+                                                                        height={60}
+                                                                        className="h-[60px] w-auto object-contain md:h-[60px] lg:h-[60px]"
                                                                         priority
                                                                     />
                                                                 </Link>
@@ -40,7 +39,7 @@ export default function Navbar() {
 							<Link
 								key={category.id}
 								href={category.href}
-								className="px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-colors bg-gray-100 text-gray-700 hover:bg-blue-600 hover:text-white"
+                                className="px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-colors bg-gray-100 text-gray-700 hover:bg-red-600 hover:text-white"
 								style={{ fontFamily: 'var(--font-open-sans)' }}
 							>
 								{category.label}
@@ -73,7 +72,7 @@ export default function Navbar() {
 									key={category.id}
 									href={category.href}
 									onClick={() => setIsMenuOpen(false)}
-									className="px-4 py-2 rounded-lg text-sm font-medium transition-colors bg-gray-100 text-gray-700 hover:bg-blue-600 hover:text-white"
+                                    className="px-4 py-2 rounded-lg text-sm font-medium transition-colors bg-gray-100 text-gray-700 hover:bg-red-600 hover:text-white"
 									style={{ fontFamily: 'var(--font-open-sans)' }}
 								>
 									{category.label}

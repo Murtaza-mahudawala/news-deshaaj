@@ -20,7 +20,6 @@ const categoryMap: Record<string, { name: string; title: string }> = {
   ghar: { name: 'घर', title: 'घर समाचार' },
   cricket: { name: 'क्रिकेट', title: 'क्रिकेट समाचार' },
   desh: { name: 'देश', title: 'देश समाचार' },
-  halat: { name: 'हालात', title: 'ताजा खबर' },
   general: { name: 'सामान्य', title: 'सामान्य समाचार' },
   business: { name: 'व्यापार समाचार', title: 'व्यापार समाचार' },
   national: { name: 'राष्ट्रीय समाचार', title: 'राष्ट्रीय समाचार' },

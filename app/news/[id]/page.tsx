@@ -2,6 +2,7 @@ import Navbar from '@/components/Navbar';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import newsData from '@/data/news.json';
 import Image from 'next/image';
+import { clampHeadline, clampMetaDescription } from '@/lib/utils';
 
 interface NewsItem {
   Active_Flag: string;
@@ -39,7 +40,7 @@ export default function NewsDetailPage({ params }: { params: { id: string } }) {
   }
 
   const date = new Date(item.Insert_Date);
-  const formatted = `${date.getUTCDate()}/${date.getUTCMonth() + 1}/${date.getUTCFullYear()}`;
+  const formattedDate = `${date.getUTCDate()}/${date.getUTCMonth() + 1}/${date.getUTCFullYear()}`;
 
   return (
     <div className="min-h-screen bg-white">
@@ -48,6 +49,16 @@ export default function NewsDetailPage({ params }: { params: { id: string } }) {
         <div className="mb-2">
           <Breadcrumbs />
         </div>
+        {/* Basic OG tags for social sharing */}
+        <head>
+          <title>{clampHeadline(item.News_Title)}</title>
+          <meta name="description" content={clampMetaDescription(item.News_Content)} />
+          <meta property="og:title" content={clampHeadline(item.News_Title)} />
+          <meta property="og:description" content={clampMetaDescription(item.News_Content)} />
+          <meta property="og:image" content={item.Image} />
+          <meta property="og:type" content="article" />
+          <meta name="twitter:card" content="summary_large_image" />
+        </head>
         <h1
           className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-red-600 mb-3"
           style={{ fontFamily: 'var(--font-roboto-slab)' }}
@@ -55,7 +66,7 @@ export default function NewsDetailPage({ params }: { params: { id: string } }) {
           {item.News_Title}
         </h1>
         <div className="text-gray-600 text-sm mb-4" style={{ fontFamily: 'var(--font-open-sans)' }}>
-          प्रकाशित: {formatted}
+          प्रकाशित: {formattedDate}
         </div>
 
         <div className="relative w-full h-56 sm:h-72 md:h-96 mb-6 rounded-lg overflow-hidden bg-gray-100">

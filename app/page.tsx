@@ -19,12 +19,12 @@ interface NewsItem {
 }
 
 const categorySections = [
-  { title: 'ताजा खबर', categoryName: 'हालात', link: '/category/halat' },
+  { title: 'ताजा खबर', categoryName: 'क्रिकेट', link: '/category/cricket' },
   { title: 'व्यापार समाचार', categoryName: 'व्यापार समाचार', link: '/category/business' },
   { title: 'राष्ट्रीय समाचार', categoryName: 'राष्ट्रीय समाचार', link: '/category/national' },
   { title: 'शेयर बाज़ार', categoryName: 'शेयर बाज़ार', link: '/category/stock' },
   { title: 'सामान्य समाचार', categoryName: 'सामान्य', link: '/category/general' },
-  { title: 'क्रिकेट समाचार', categoryName: 'क्रिकेट', link: '/category/cricket' },
+  { title: 'देश समाचार', categoryName: 'देश', link: '/category/desh' },
 ];
 
 export default function Home() {

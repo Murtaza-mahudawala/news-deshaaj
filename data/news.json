@@ -2,7 +2,7 @@
   {
     "Active_Flag": "Y",
     "Categrory_Name": "क्रिकेट",
-    "Image": "https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?w=300&h=200&fit=crop",
+    "Image": "https://picsum.photos/300/200?random=1",
     "Insert_Date": "2025-09-29T10:00:00Z",
     "News_Content": "भारतीय क्रिकेट टीम ने आज शानदार जीत दर्ज की। कप्तान ने शतक बनाया और गेंदबाजों ने शानदार प्रदर्शन किया। यह टीम की लगातार तीसरी जीत है।",
     "News_Source": "NDTV Sports",
@@ -13,7 +13,7 @@
   {
     "Active_Flag": "Y",
     "Categrory_Name": "देश",
-    "Image": "https://images.unsplash.com/photo-1524661135-423995f22d0b?w=300&h=200&fit=crop",
+    "Image": "https://picsum.photos/300/200?random=2",
     "Insert_Date": "2025-09-29T09:30:00Z",
     "News_Content": "प्रधानमंत्री ने आज नई योजना की घोषणा की। इस योजना से देश के विकास को गति मिलेगी। सभी राज्यों को इसका लाभ मिलेगा।",
     "News_Source": "आज तक",
@@ -24,51 +24,7 @@
   {
     "Active_Flag": "Y",
     "Categrory_Name": "व्यापार समाचार",
-    "Image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=300&h=200&fit=crop",
-    "Insert_Date": "2025-09-29T08:45:00Z",
-    "News_Content": "भारतीय अर्थव्यवस्था में तेजी देखी जा रही है। नई कंपनियां स्थापित हो रही हैं और रोजगार के अवसर बढ़ रहे हैं। विशेषज्ञों का मानना है कि यह सकारात्मक संकेत है।",
-    "News_Source": "इकोनॉमिक टाइम्स",
-    "News_Title": "भारतीय अर्थव्यवस्था में तेजी",
-    "News_Id": "3",
-    "Slug": "economy-growth"
-  },
-  {
-    "Active_Flag": "Y",
-    "Categrory_Name": "व्यापार समाचार",
-    "Image": "https://images.unsplash.com/photo-1581092335431-d09f4f2b8b4d?w=300&h=200&fit=crop",
-    "Insert_Date": "2025-09-27T14:30:00Z",
-    "News_Content": "ई-कॉमर्स कंपनियों की सेल में रिकॉर्ड बिक्री हुई। ग्राहकों ने भारी मात्रा में उत्पाद खरीदे।",
-    "News_Source": "बिजनेस स्टैंडर्ड",
-    "News_Title": "ई-कॉमर्स सेल में रिकॉर्ड बिक्री",
-    "News_Id": "16",
-    "Slug": "ecommerce-sale-record"
-  },
-  {
-    "Active_Flag": "Y",
-    "Categrory_Name": "क्रिकेट",
-    "Image": "https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?w=300&h=200&fit=crop",
-    "Insert_Date": "2025-09-29T10:00:00Z",
-    "News_Content": "भारतीय क्रिकेट टीम ने आज शानदार जीत दर्ज की। कप्तान ने शतक बनाया और गेंदबाजों ने शानदार प्रदर्शन किया। यह टीम की लगातार तीसरी जीत है।",
-    "News_Source": "NDTV Sports",
-    "News_Title": "भारत ने शानदार जीत दर्ज की",
-    "News_Id": "1",
-    "Slug": "india-wins-cricket"
-  },
-  {
-    "Active_Flag": "Y",
-    "Categrory_Name": "देश",
-    "Image": "https://images.unsplash.com/photo-1524661135-423995f22d0b?w=300&h=200&fit=crop",
-    "Insert_Date": "2025-09-29T09:30:00Z",
-    "News_Content": "प्रधानमंत्री ने आज नई योजना की घोषणा की। इस योजना से देश के विकास को गति मिलेगी। सभी राज्यों को इसका लाभ मिलेगा।",
-    "News_Source": "आज तक",
-    "News_Title": "प्रधानमंत्री ने नई योजना की घोषणा की",
-    "News_Id": "2",
-    "Slug": "pm-new-scheme"
-  },
-  {
-    "Active_Flag": "Y",
-    "Categrory_Name": "व्यापार समाचार",
-    "Image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=300&h=200&fit=crop",
+    "Image": "https://picsum.photos/300/200?random=3",
     "Insert_Date": "2025-09-29T08:45:00Z",
     "News_Content": "भारतीय अर्थव्यवस्था में तेजी देखी जा रही है। नई कंपनियां स्थापित हो रही हैं और रोजगार के अवसर बढ़ रहे हैं। विशेषज्ञों का मानना है कि यह सकारात्मक संकेत है।",
     "News_Source": "इकोनॉमिक टाइम्स",
@@ -79,7 +35,7 @@
   {
     "Active_Flag": "Y",
     "Categrory_Name": "शेयर बाज़ार",
-    "Image": "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=300&h=200&fit=crop",
+    "Image": "https://picsum.photos/300/200?random=4",
     "Insert_Date": "2025-09-29T08:15:00Z",
     "News_Content": "सेंसेक्स और निफ्टी आज नई ऊंचाई पर पहुंचे। निवेशकों में उत्साह का माहौल है। आईटी और बैंकिंग शेयरों में तेजी देखी गई।",
     "News_Source": "मनी कंट्रोल",
@@ -89,8 +45,8 @@
   },
   {
     "Active_Flag": "Y",
-    "Categrory_Name": "हालात",
-    "Image": "https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=300&h=200&fit=crop",
+    "Categrory_Name": "मौसम",
+    "Image": "https://picsum.photos/300/200?random=5",
     "Insert_Date": "2025-09-29T07:30:00Z",
     "News_Content": "मौसम विभाग ने अगले तीन दिनों के लिए बारिश की चेतावनी जारी की है। लोगों से घर में रहने की अपील की गई है। आपातकालीन सेवाएं सतर्क हैं।",
     "News_Source": "NDTV India",
@@ -101,7 +57,7 @@
   {
     "Active_Flag": "Y",
     "Categrory_Name": "सामान्य",
-    "Image": "https://images.unsplash.com/photo-1495020689067-958852a7765e?w=300&h=200&fit=crop",
+    "Image": "https://picsum.photos/300/200?random=6",
     "Insert_Date": "2025-09-28T18:00:00Z",
     "News_Content": "शहर में नया मेट्रो स्टेशन खुला। यह परिवहन सेवाओं को बेहतर बनाएगा। नागरिकों ने इसका स्वागत किया है। यातायात में सुधार की उम्मीद है।",
     "News_Source": "दैनिक जागरण",
@@ -112,7 +68,7 @@
   {
     "Active_Flag": "Y",
     "Categrory_Name": "राष्ट्रीय समाचार",
-    "Image": "https://images.unsplash.com/photo-1523995462485-3d171b5c8fa9?w=300&h=200&fit=crop",
+    "Image": "https://picsum.photos/300/200?random=7",
     "Insert_Date": "2025-09-28T16:30:00Z",
     "News_Content": "राष्ट्रपति ने युवाओं से देश सेवा की अपील की। उन्होंने कहा कि युवा शक्ति ही देश की प्रगति का आधार है। शिक्षा और कौशल विकास पर जोर दिया।",
     "News_Source": "हिंदुस्तान टाइम्स",
@@ -123,7 +79,7 @@
   {
     "Active_Flag": "Y",
     "Categrory_Name": "क्रिकेट",
-    "Image": "https://images.unsplash.com/photo-1531415074968-036ba1b575da?w=300&h=200&fit=crop",
+    "Image": "https://picsum.photos/300/200?random=8",
     "Insert_Date": "2025-09-28T15:00:00Z",
     "News_Content": "आईपीएल की नीलामी में रिकॉर्ड तोड़ बोली लगी। युवा खिलाड़ियों को मिले बड़े अनुबंध। सभी फ्रेंचाइजी ने अपनी टीम को मजबूत बनाया।",
     "News_Source": "क्रिकइन्फो",
@@ -134,7 +90,7 @@
   {
     "Active_Flag": "Y",
     "Categrory_Name": "घर",
-    "Image": "https://images.unsplash.com/photo-1484154218962-a197022b5858?w=300&h=200&fit=crop",
+    "Image": "https://picsum.photos/300/200?random=9",
     "Insert_Date": "2025-09-28T14:00:00Z",
     "News_Content": "घर की सजावट के नए ट्रेंड सामने आए। मिनिमलिस्ट डिजाइन और प्राकृतिक रंग लोकप्रिय हो रहे हैं। विशेषज्ञों ने टिप्स साझा किए।",
     "News_Source": "होम डेकोर मैगजीन",
@@ -145,7 +101,7 @@
   {
     "Active_Flag": "Y",
     "Categrory_Name": "व्यापार समाचार",
-    "Image": "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=300&h=200&fit=crop",
+    "Image": "https://picsum.photos/300/200?random=10",
     "Insert_Date": "2025-09-28T12:30:00Z",
     "News_Content": "स्टार्टअप को मिला बड़ा निवेश। यह कंपनी टेक्नोलॉजी क्षेत्र में काम करती है। इस निवेश से रोजगार के नए अवसर बनेंगे।",
     "News_Source": "द इकोनॉमिक टाइम्स",
@@ -155,8 +111,8 @@
   },
   {
     "Active_Flag": "Y",
-    "Categrory_Name": "देश",
-    "Image": "https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?w=300&h=200&fit=crop",
+    "Categrory_Name": "शिक्षा",
+    "Image": "https://picsum.photos/300/200?random=11",
     "Insert_Date": "2025-09-28T11:00:00Z",
     "News_Content": "शिक्षा मंत्री ने नई नीति की घोषणा की। इससे छात्रों को बेहतर सुविधाएं मिलेंगी। डिजिटल शिक्षा पर विशेष ध्यान दिया जाएगा।",
     "News_Source": "इंडिया टुडे",
@@ -166,8 +122,8 @@
   },
   {
     "Active_Flag": "Y",
-    "Categrory_Name": "हालात",
-    "Image": "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=300&h=200&fit=crop",
+    "Categrory_Name": "मौसम",
+    "Image": "https://picsum.photos/300/200?random=12",
     "Insert_Date": "2025-09-28T10:00:00Z",
     "News_Content": "महानगर में यातायात जाम की समस्या बढ़ी। अधिकारियों ने समाधान के उपाय बताए। नई सड़कों के निर्माण की योजना बनाई जा रही है।",
     "News_Source": "हिंदुस्तान",
@@ -178,7 +134,7 @@
   {
     "Active_Flag": "Y",
     "Categrory_Name": "क्रिकेट",
-    "Image": "https://images.unsplash.com/photo-1605687703568-30f88cf3ec9f?w=300&h=200&fit=crop",
+    "Image": "https://picsum.photos/300/200?random=13",
     "Insert_Date": "2025-09-27T18:30:00Z",
     "News_Content": "महिला क्रिकेट टीम ने ऑस्ट्रेलिया को हराया। बल्लेबाजों और गेंदबाजों दोनों का शानदार प्रदर्शन रहा।",
     "News_Source": "स्पोर्ट्स टुडे",
@@ -188,8 +144,8 @@
   },
   {
     "Active_Flag": "Y",
-    "Categrory_Name": "देश",
-    "Image": "https://images.unsplash.com/photo-1581090700227-4c4d04f17f2b?w=300&h=200&fit=crop",
+    "Categrory_Name": "राजनीति",
+    "Image": "https://picsum.photos/300/200?random=14",
     "Insert_Date": "2025-09-27T16:45:00Z",
     "News_Content": "संसद में नए बिल पर चर्चा हुई। सांसदों ने अपनी राय रखी। बिल अगले सत्र में पारित होने की उम्मीद है।",
     "News_Source": "लोकसभा टीवी",
@@ -199,8 +155,8 @@
   },
   {
     "Active_Flag": "Y",
-    "Categrory_Name": "घर",
-    "Image": "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=300&h=200&fit=crop",
+    "Categrory_Name": "तकनीक",
+    "Image": "https://picsum.photos/300/200?random=15",
     "Insert_Date": "2025-09-27T15:00:00Z",
     "News_Content": "घर की सुरक्षा के लिए नए स्मार्ट उपकरण लॉन्च किए गए। कैमरे और अलार्म सिस्टम अब अधिक सस्ते और प्रभावी हैं।",
     "News_Source": "होम सिक्योरिटी न्यूज़",
@@ -210,8 +166,8 @@
   },
   {
     "Active_Flag": "Y",
-    "Categrory_Name": "व्यापार समाचार",
-    "Image": "https://images.unsplash.com/photo-1581092335431-d09f4f2b8b4d?w=300&h=200&fit=crop",
+    "Categrory_Name": "ई-कॉमर्स",
+    "Image": "https://picsum.photos/300/200?random=16",
     "Insert_Date": "2025-09-27T14:30:00Z",
     "News_Content": "ई-कॉमर्स कंपनियों की सेल में रिकॉर्ड बिक्री हुई। ग्राहकों ने भारी मात्रा में उत्पाद खरीदे।",
     "News_Source": "बिजनेस स्टैंडर्ड",
@@ -222,7 +178,7 @@
   {
     "Active_Flag": "Y",
     "Categrory_Name": "शेयर बाज़ार",
-    "Image": "https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=300&h=200&fit=crop",
+    "Image": "https://picsum.photos/300/200?random=17",
     "Insert_Date": "2025-09-27T13:15:00Z",
     "News_Content": "सोने और चांदी के भाव में बढ़ोतरी हुई। निवेशकों का रुझान कीमती धातुओं की ओर बढ़ा।",
     "News_Source": "बिजनेस न्यूज़",
@@ -232,8 +188,8 @@
   },
   {
     "Active_Flag": "Y",
-    "Categrory_Name": "राष्ट्रीय समाचार",
-    "Image": "https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=300&h=200&fit=crop",
+    "Categrory_Name": "रक्षा",
+    "Image": "https://picsum.photos/300/200?random=18",
     "Insert_Date": "2025-09-27T12:00:00Z",
     "News_Content": "भारतीय सेना ने नए हथियारों का परीक्षण किया। यह देश की सुरक्षा क्षमता को मजबूत करेगा।",
     "News_Source": "ऑल इंडिया रेडियो",
@@ -243,8 +199,8 @@
   },
   {
     "Active_Flag": "Y",
-    "Categrory_Name": "सामान्य",
-    "Image": "https://images.unsplash.com/photo-1519681393784-d120267933ba?w=300&h=200&fit=crop",
+    "Categrory_Name": "कला",
+    "Image": "https://picsum.photos/300/200?random=19",
     "Insert_Date": "2025-09-27T11:00:00Z",
     "News_Content": "शहर में कला प्रदर्शनी का आयोजन हुआ। कलाकारों ने अपनी कृतियों का प्रदर्शन किया।",
     "News_Source": "कला समय",
@@ -254,8 +210,8 @@
   },
   {
     "Active_Flag": "Y",
-    "Categrory_Name": "हालात",
-    "Image": "https://images.unsplash.com/photo-1581093458791-9d8ecbbb82d1?w=300&h=200&fit=crop",
+    "Categrory_Name": "स्वास्थ्य",
+    "Image": "https://picsum.photos/300/200?random=20",
     "Insert_Date": "2025-09-27T10:00:00Z",
     "News_Content": "स्वास्थ्य विभाग ने डेंगू पर रोकथाम अभियान शुरू किया। नागरिकों से साफ-सफाई रखने की अपील की।",
     "News_Source": "स्वास्थ्य समाचार",
@@ -265,8 +221,8 @@
   },
   {
     "Active_Flag": "Y",
-    "Categrory_Name": "देश",
-    "Image": "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=300&h=200&fit=crop",
+    "Categrory_Name": "कृषि",
+    "Image": "https://picsum.photos/300/200?random=21",
     "Insert_Date": "2025-09-26T18:00:00Z",
     "News_Content": "कृषि मंत्री ने किसानों के लिए नई योजनाओं की घोषणा की। इससे किसानों की आमदनी बढ़ने की उम्मीद है।",
     "News_Source": "कृषि न्यूज़",
@@ -276,8 +232,8 @@
   },
   {
     "Active_Flag": "Y",
-    "Categrory_Name": "क्रिकेट",
-    "Image": "https://images.unsplash.com/photo-1599566150163-29194dcaad36?w=300&h=200&fit=crop",
+    "Categrory_Name": "खेल",
+    "Image": "https://picsum.photos/300/200?random=22",
     "Insert_Date": "2025-09-26T16:00:00Z",
     "News_Content": "पूर्व कप्तान ने कोचिंग में वापसी की। वे अब युवा खिलाड़ियों को प्रशिक्षित करेंगे।",
     "News_Source": "क्रिकबज़",
@@ -287,8 +243,8 @@
   },
   {
     "Active_Flag": "Y",
-    "Categrory_Name": "घर",
-    "Image": "https://images.unsplash.com/photo-1521783988139-8932f9f3e4eb?w=300&h=200&fit=crop",
+    "Categrory_Name": "लाइफस्टाइल",
+    "Image": "https://picsum.photos/300/200?random=23",
     "Insert_Date": "2025-09-26T14:00:00Z",
     "News_Content": "रसोई की नई डिजाइन लोकप्रिय हो रही है। स्मार्ट किचन उपकरण अब अधिक सुलभ हैं।",
     "News_Source": "होम स्टाइल",
@@ -298,13 +254,79 @@
   },
   {
     "Active_Flag": "Y",
-    "Categrory_Name": "व्यापार समाचार",
-    "Image": "https://images.unsplash.com/photo-1556740749-887f6717d7e4?w=300&h=200&fit=crop",
+    "Categrory_Name": "तकनीक",
+    "Image": "https://picsum.photos/300/200?random=24",
     "Insert_Date": "2025-09-26T13:30:00Z",
     "News_Content": "टेक्नोलॉजी कंपनियों ने नए प्रोडक्ट लॉन्च किए। ग्राहकों में उत्साह देखा गया।",
     "News_Source": "टेक न्यूज़",
     "News_Title": "नई टेक्नोलॉजी प्रोडक्ट्स लॉन्च",
     "News_Id": "24",
     "Slug": "new-tech-products"
+  },
+  {
+    "Active_Flag": "Y",
+    "Categrory_Name": "मनोरंजन",
+    "Image": "https://picsum.photos/300/200?random=25",
+    "Insert_Date": "2025-09-26T12:00:00Z",
+    "News_Content": "बॉलीवुड की नई फिल्म ने बॉक्स ऑफिस पर धूम मचा दी। फिल्म ने पहले दिन रिकॉर्ड कमाई की।",
+    "News_Source": "फिल्मी मसाला",
+    "News_Title": "नई फिल्म का बॉक्स ऑफिस पर धमाका",
+    "News_Id": "25",
+    "Slug": "bollywood-movie-success"
+  },
+  {
+    "Active_Flag": "Y",
+    "Categrory_Name": "पर्यावरण",
+    "Image": "https://picsum.photos/300/200?random=26",
+    "Insert_Date": "2025-09-26T11:30:00Z",
+    "News_Content": "पर्यावरण मंत्री ने प्रदूषण नियंत्रण के लिए नई गाइडलाइंस जारी कीं। शहरों में हरे-भरे क्षेत्र बढ़ाने पर जोर।",
+    "News_Source": "ग्रीन न्यूज़",
+    "News_Title": "प्रदूषण नियंत्रण के लिए नई गाइडलाइंस",
+    "News_Id": "26",
+    "Slug": "pollution-control-guidelines"
+  },
+  {
+    "Active_Flag": "Y",
+    "Categrory_Name": "अंतरराष्ट्रीय",
+    "Image": "https://picsum.photos/300/200?random=27",
+    "Insert_Date": "2025-09-26T10:15:00Z",
+    "News_Content": "संयुक्त राष्ट्र महासभा में प्रधानमंत्री का भाषण प्रभावित करने वाला रहा। उन्होंने वैश्विक चुनौतियों पर चर्चा की।",
+    "News_Source": "वर्ल्ड न्यूज़",
+    "News_Title": "संयुक्त राष्ट्र में प्रधानमंत्री का भाषण",
+    "News_Id": "27",
+    "Slug": "pm-un-speech"
+  },
+  {
+    "Active_Flag": "Y",
+    "Categrory_Name": "विज्ञान",
+    "Image": "https://picsum.photos/300/200?random=28",
+    "Insert_Date": "2025-09-25T16:00:00Z",
+    "News_Content": "विज्ञानियों ने नए ग्रह की खोज की घोषणा की। यह ग्रह जीवन के लिए उपयुक्त माना जा रहा है।",
+    "News_Source": "साइंस टुडे",
+    "News_Title": "नए ग्रह की खोज",
+    "News_Id": "28",
+    "Slug": "new-planet-discovery"
+  },
+  {
+    "Active_Flag": "Y",
+    "Categrory_Name": "पर्यटन",
+    "Image": "https://picsum.photos/300/200?random=29",
+    "Insert_Date": "2025-09-25T14:30:00Z",
+    "News_Content": "हिमालय में नई ट्रेकिंग रूट विकसित की जा रही है। पर्यटकों के लिए सुरक्षित और रोमांचक अनुभव।",
+    "News_Source": "ट्रैवल टाइम्स",
+    "News_Title": "हिमालय में नई ट्रेकिंग रूट",
+    "News_Id": "29",
+    "Slug": "himalaya-trekking-routes"
+  },
+  {
+    "Active_Flag": "Y",
+    "Categrory_Name": "ऑटो",
+    "Image": "https://picsum.photos/300/200?random=30",
+    "Insert_Date": "2025-09-25T13:00:00Z",
+    "News_Content": "इलेक्ट्रिक वाहनों की बिक्री में भारी बढ़ोतरी हुई। सरकार की सब्सिडी योजना का असर दिख रहा है।",
+    "News_Source": "ऑटो न्यूज़",
+    "News_Title": "इलेक्ट्रिक वाहनों की बढ़ती लोकप्रियता",
+    "News_Id": "30",
+    "Slug": "electric-vehicles-growth"
   }
 ]

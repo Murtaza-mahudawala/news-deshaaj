@@ -1,6 +1,7 @@
 import './globals.css';
 import type { Metadata } from 'next';
 import { Roboto_Slab, Open_Sans } from 'next/font/google';
+import Footer from '@/components/Footer';
 
 const robotoSlab = Roboto_Slab({
   subsets: ['latin'],
@@ -28,8 +29,12 @@ export default function RootLayout({
     <html lang="hi">
       <head>
         <link rel="icon" href="/logo.png" type="image/png" />
+        <link rel="apple-touch-icon" href="/logo.png" />
       </head>
-      <body className={`${robotoSlab.variable} ${openSans.variable}`}>{children}</body>
+      <body className={`${robotoSlab.variable} ${openSans.variable}`}>
+        {children}
+        <Footer />
+      </body>
     </html>
   );
 }
