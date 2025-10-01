@@ -17,9 +17,9 @@ export default function NewsDetailPage({ params }: { params: { id: string } }) {
 
   if (!item) {
     return (
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-gray-50 flex flex-col">
         <Navbar />
-        <main className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        <main className="flex-1 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-10 w-full">
           <Breadcrumbs />
           <p className="text-gray-600" style={{ fontFamily: 'var(--font-open-sans)' }}>
             खबर नहीं मिली।
@@ -33,9 +33,9 @@ export default function NewsDetailPage({ params }: { params: { id: string } }) {
   const formattedDate = `${date.getUTCDate()}/${date.getUTCMonth() + 1}/${date.getUTCFullYear()}`;
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white flex flex-col">
       <Navbar />
-      <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+      <main className="flex-1 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 w-full">
         <div className="mb-2">
           <Breadcrumbs />
         </div>

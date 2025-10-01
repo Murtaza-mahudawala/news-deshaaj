@@ -1,6 +1,6 @@
 // Data utility functions for news data
 // Note: In production, this would typically fetch from an API or database
-// For now, we'll import from the data directory in the project root
+// For now, we'll use a static import from the data directory in the project root
 import newsData from '../data/news.json';
 
 export interface NewsItem {

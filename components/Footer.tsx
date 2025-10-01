@@ -10,7 +10,7 @@ export default function Footer() {
     setYear(new Date().getFullYear());
   }, []);
   return (
-    <footer className="mt-8 bg-[#0f1826] text-gray-300">
+    <footer className="mt-auto bg-[#0f1826] text-gray-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="py-6 flex items-center justify-between text-sm" style={{ fontFamily: 'var(--font-open-sans)' }}>
           <div suppressHydrationWarning>© {year} Desh Aaj News. All rights reserved.</div>
