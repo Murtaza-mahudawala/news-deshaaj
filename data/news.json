@@ -1,0 +1,134 @@
+[
+  {
+    "Active_Flag": "Y",
+    "Categrory_Name": "क्रिकेट",
+    "Image": "https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?w=300&h=200&fit=crop",
+    "Insert_Date": "2025-09-29T10:00:00Z",
+    "News_Content": "भारतीय क्रिकेट टीम ने आज शानदार जीत दर्ज की। कप्तान ने शतक बनाया और गेंदबाजों ने शानदार प्रदर्शन किया। यह टीम की लगातार तीसरी जीत है।",
+    "News_Source": "NDTV Sports",
+    "News_Title": "भारत ने शानदार जीत दर्ज की",
+    "News_Id": "1",
+    "Slug": "india-wins-cricket"
+  },
+  {
+    "Active_Flag": "Y",
+    "Categrory_Name": "देश",
+    "Image": "https://images.unsplash.com/photo-1524661135-423995f22d0b?w=300&h=200&fit=crop",
+    "Insert_Date": "2025-09-29T09:30:00Z",
+    "News_Content": "प्रधानमंत्री ने आज नई योजना की घोषणा की। इस योजना से देश के विकास को गति मिलेगी। सभी राज्यों को इसका लाभ मिलेगा।",
+    "News_Source": "आज तक",
+    "News_Title": "प्रधानमंत्री ने नई योजना की घोषणा की",
+    "News_Id": "2",
+    "Slug": "pm-new-scheme"
+  },
+  {
+    "Active_Flag": "Y",
+    "Categrory_Name": "व्यापार समाचार",
+    "Image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=300&h=200&fit=crop",
+    "Insert_Date": "2025-09-29T08:45:00Z",
+    "News_Content": "भारतीय अर्थव्यवस्था में तेजी देखी जा रही है। नई कंपनियां स्थापित हो रही हैं और रोजगार के अवसर बढ़ रहे हैं। विशेषज्ञों का मानना है कि यह सकारात्मक संकेत है।",
+    "News_Source": "इकोनॉमिक टाइम्स",
+    "News_Title": "भारतीय अर्थव्यवस्था में तेजी",
+    "News_Id": "3",
+    "Slug": "economy-growth"
+  },
+  {
+    "Active_Flag": "Y",
+    "Categrory_Name": "शेयर बाज़ार",
+    "Image": "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=300&h=200&fit=crop",
+    "Insert_Date": "2025-09-29T08:15:00Z",
+    "News_Content": "सेंसेक्स और निफ्टी आज नई ऊंचाई पर पहुंचे। निवेशकों में उत्साह का माहौल है। आईटी और बैंकिंग शेयरों में तेजी देखी गई।",
+    "News_Source": "मनी कंट्रोल",
+    "News_Title": "सेंसेक्स नई ऊंचाई पर",
+    "News_Id": "4",
+    "Slug": "sensex-new-high"
+  },
+  {
+    "Active_Flag": "Y",
+    "Categrory_Name": "हालात",
+    "Image": "https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=300&h=200&fit=crop",
+    "Insert_Date": "2025-09-29T07:30:00Z",
+    "News_Content": "मौसम विभाग ने अगले तीन दिनों के लिए बारिश की चेतावनी जारी की है। लोगों से घर में रहने की अपील की गई है। आपातकालीन सेवाएं सतर्क हैं।",
+    "News_Source": "NDTV India",
+    "News_Title": "मौसम विभाग ने जारी की चेतावनी",
+    "News_Id": "5",
+    "Slug": "weather-warning"
+  },
+  {
+    "Active_Flag": "Y",
+    "Categrory_Name": "सामान्य",
+    "Image": "https://images.unsplash.com/photo-1495020689067-958852a7765e?w=300&h=200&fit=crop",
+    "Insert_Date": "2025-09-28T18:00:00Z",
+    "News_Content": "शहर में नया मेट्रो स्टेशन खुला। यह परिवहन सेवाओं को बेहतर बनाएगा। नागरिकों ने इसका स्वागत किया है। यातायात में सुधार की उम्मीद है।",
+    "News_Source": "दैनिक जागरण",
+    "News_Title": "शहर में नया मेट्रो स्टेशन खुला",
+    "News_Id": "6",
+    "Slug": "new-metro-station"
+  },
+  {
+    "Active_Flag": "Y",
+    "Categrory_Name": "राष्ट्रीय समाचार",
+    "Image": "https://images.unsplash.com/photo-1523995462485-3d171b5c8fa9?w=300&h=200&fit=crop",
+    "Insert_Date": "2025-09-28T16:30:00Z",
+    "News_Content": "राष्ट्रपति ने युवाओं से देश सेवा की अपील की। उन्होंने कहा कि युवा शक्ति ही देश की प्रगति का आधार है। शिक्षा और कौशल विकास पर जोर दिया।",
+    "News_Source": "हिंदुस्तान टाइम्स",
+    "News_Title": "राष्ट्रपति ने युवाओं को संबोधित किया",
+    "News_Id": "7",
+    "Slug": "president-address"
+  },
+  {
+    "Active_Flag": "Y",
+    "Categrory_Name": "क्रिकेट",
+    "Image": "https://images.unsplash.com/photo-1531415074968-036ba1b575da?w=300&h=200&fit=crop",
+    "Insert_Date": "2025-09-28T15:00:00Z",
+    "News_Content": "आईपीएल की नीलामी में रिकॉर्ड तोड़ बोली लगी। युवा खिलाड़ियों को मिले बड़े अनुबंध। सभी फ्रेंचाइजी ने अपनी टीम को मजबूत बनाया।",
+    "News_Source": "क्रिकइन्फो",
+    "News_Title": "आईपीएल नीलामी में रिकॉर्ड बोली",
+    "News_Id": "8",
+    "Slug": "ipl-auction-record"
+  },
+  {
+    "Active_Flag": "Y",
+    "Categrory_Name": "घर",
+    "Image": "https://images.unsplash.com/photo-1484154218962-a197022b5858?w=300&h=200&fit=crop",
+    "Insert_Date": "2025-09-28T14:00:00Z",
+    "News_Content": "घर की सजावट के नए ट्रेंड सामने आए। मिनिमलिस्ट डिजाइन और प्राकृतिक रंग लोकप्रिय हो रहे हैं। विशेषज्ञों ने टिप्स साझा किए।",
+    "News_Source": "होम डेकोर मैगजीन",
+    "News_Title": "घर की सजावट के नए ट्रेंड",
+    "News_Id": "9",
+    "Slug": "home-decor-trends"
+  },
+  {
+    "Active_Flag": "Y",
+    "Categrory_Name": "व्यापार समाचार",
+    "Image": "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=300&h=200&fit=crop",
+    "Insert_Date": "2025-09-28T12:30:00Z",
+    "News_Content": "स्टार्टअप को मिला बड़ा निवेश। यह कंपनी टेक्नोलॉजी क्षेत्र में काम करती है। इस निवेश से रोजगार के नए अवसर बनेंगे।",
+    "News_Source": "द इकोनॉमिक टाइम्स",
+    "News_Title": "स्टार्टअप को मिला बड़ा निवेश",
+    "News_Id": "10",
+    "Slug": "startup-funding"
+  },
+  {
+    "Active_Flag": "Y",
+    "Categrory_Name": "देश",
+    "Image": "https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?w=300&h=200&fit=crop",
+    "Insert_Date": "2025-09-28T11:00:00Z",
+    "News_Content": "शिक्षा मंत्री ने नई नीति की घोषणा की। इससे छात्रों को बेहतर सुविधाएं मिलेंगी। डिजिटल शिक्षा पर विशेष ध्यान दिया जाएगा।",
+    "News_Source": "इंडिया टुडे",
+    "News_Title": "शिक्षा मंत्री ने की नई नीति की घोषणा",
+    "News_Id": "11",
+    "Slug": "education-policy"
+  },
+  {
+    "Active_Flag": "Y",
+    "Categrory_Name": "हालात",
+    "Image": "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=300&h=200&fit=crop",
+    "Insert_Date": "2025-09-28T10:00:00Z",
+    "News_Content": "महानगर में यातायात जाम की समस्या बढ़ी। अधिकारियों ने समाधान के उपाय बताए। नई सड़कों के निर्माण की योजना बनाई जा रही है।",
+    "News_Source": "हिंदुस्तान",
+    "News_Title": "महानगर में यातायात जाम की समस्या",
+    "News_Id": "12",
+    "Slug": "traffic-jam-issue"
+  }
+]
