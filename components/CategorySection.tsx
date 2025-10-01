@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { ChevronRight } from 'lucide-react';
 import NewsCard from './NewsCard';
+import { ReactNode } from 'react';
 
 interface NewsItem {
   Active_Flag: string;
@@ -15,7 +16,7 @@ interface NewsItem {
 }
 
 interface CategorySectionProps {
-  title: string;
+  title: ReactNode;
   categoryName: string;
   news: NewsItem[];
   viewAllLink: string;
@@ -32,7 +33,7 @@ export default function CategorySection({ title, categoryName, news, viewAllLink
     <section className="mb-12">
       <div className="flex items-center justify-between mb-6">
         <h2
-          className="text-2xl md:text-3xl font-bold text-gray-900"
+          className="text-2xl md:text-3xl font-bold text-red-600"
           style={{ fontFamily: 'var(--font-roboto-slab)' }}
         >
           {title}

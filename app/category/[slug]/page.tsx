@@ -1,6 +1,7 @@
 import Navbar from '@/components/Navbar';
 import NewsCard from '@/components/NewsCard';
 import AdSection from '@/components/AdSection';
+import Breadcrumbs from '@/components/Breadcrumbs';
 import newsData from '@/data/news.json';
 
 interface NewsItem {
@@ -52,10 +53,12 @@ export default function CategoryPage({ params }: { params: { slug: string } }) {
   return (
     <div className="min-h-screen bg-gray-50">
       <Navbar />
-
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div className="mb-1">
+          <Breadcrumbs />
+        </div>
         <h1
-          className="text-3xl md:text-4xl font-bold text-gray-900 mb-8"
+          className="text-3xl md:text-4xl font-bold text-red-600 mb-8"
           style={{ fontFamily: 'var(--font-roboto-slab)' }}
         >
           {category.title}

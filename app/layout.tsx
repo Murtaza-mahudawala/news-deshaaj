@@ -26,6 +26,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="hi">
+      <head>
+        <link rel="icon" href="/logo.png" type="image/png" />
+      </head>
       <body className={`${robotoSlab.variable} ${openSans.variable}`}>{children}</body>
     </html>
   );

@@ -34,6 +34,50 @@
   },
   {
     "Active_Flag": "Y",
+    "Categrory_Name": "व्यापार समाचार",
+    "Image": "https://images.unsplash.com/photo-1581092335431-d09f4f2b8b4d?w=300&h=200&fit=crop",
+    "Insert_Date": "2025-09-27T14:30:00Z",
+    "News_Content": "ई-कॉमर्स कंपनियों की सेल में रिकॉर्ड बिक्री हुई। ग्राहकों ने भारी मात्रा में उत्पाद खरीदे।",
+    "News_Source": "बिजनेस स्टैंडर्ड",
+    "News_Title": "ई-कॉमर्स सेल में रिकॉर्ड बिक्री",
+    "News_Id": "16",
+    "Slug": "ecommerce-sale-record"
+  },
+  {
+    "Active_Flag": "Y",
+    "Categrory_Name": "क्रिकेट",
+    "Image": "https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?w=300&h=200&fit=crop",
+    "Insert_Date": "2025-09-29T10:00:00Z",
+    "News_Content": "भारतीय क्रिकेट टीम ने आज शानदार जीत दर्ज की। कप्तान ने शतक बनाया और गेंदबाजों ने शानदार प्रदर्शन किया। यह टीम की लगातार तीसरी जीत है।",
+    "News_Source": "NDTV Sports",
+    "News_Title": "भारत ने शानदार जीत दर्ज की",
+    "News_Id": "1",
+    "Slug": "india-wins-cricket"
+  },
+  {
+    "Active_Flag": "Y",
+    "Categrory_Name": "देश",
+    "Image": "https://images.unsplash.com/photo-1524661135-423995f22d0b?w=300&h=200&fit=crop",
+    "Insert_Date": "2025-09-29T09:30:00Z",
+    "News_Content": "प्रधानमंत्री ने आज नई योजना की घोषणा की। इस योजना से देश के विकास को गति मिलेगी। सभी राज्यों को इसका लाभ मिलेगा।",
+    "News_Source": "आज तक",
+    "News_Title": "प्रधानमंत्री ने नई योजना की घोषणा की",
+    "News_Id": "2",
+    "Slug": "pm-new-scheme"
+  },
+  {
+    "Active_Flag": "Y",
+    "Categrory_Name": "व्यापार समाचार",
+    "Image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=300&h=200&fit=crop",
+    "Insert_Date": "2025-09-29T08:45:00Z",
+    "News_Content": "भारतीय अर्थव्यवस्था में तेजी देखी जा रही है। नई कंपनियां स्थापित हो रही हैं और रोजगार के अवसर बढ़ रहे हैं। विशेषज्ञों का मानना है कि यह सकारात्मक संकेत है।",
+    "News_Source": "इकोनॉमिक टाइम्स",
+    "News_Title": "भारतीय अर्थव्यवस्था में तेजी",
+    "News_Id": "3",
+    "Slug": "economy-growth"
+  },
+  {
+    "Active_Flag": "Y",
     "Categrory_Name": "शेयर बाज़ार",
     "Image": "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=300&h=200&fit=crop",
     "Insert_Date": "2025-09-29T08:15:00Z",
@@ -130,5 +174,137 @@
     "News_Title": "महानगर में यातायात जाम की समस्या",
     "News_Id": "12",
     "Slug": "traffic-jam-issue"
+  },
+  {
+    "Active_Flag": "Y",
+    "Categrory_Name": "क्रिकेट",
+    "Image": "https://images.unsplash.com/photo-1605687703568-30f88cf3ec9f?w=300&h=200&fit=crop",
+    "Insert_Date": "2025-09-27T18:30:00Z",
+    "News_Content": "महिला क्रिकेट टीम ने ऑस्ट्रेलिया को हराया। बल्लेबाजों और गेंदबाजों दोनों का शानदार प्रदर्शन रहा।",
+    "News_Source": "स्पोर्ट्स टुडे",
+    "News_Title": "महिला टीम की ऐतिहासिक जीत",
+    "News_Id": "13",
+    "Slug": "women-cricket-win"
+  },
+  {
+    "Active_Flag": "Y",
+    "Categrory_Name": "देश",
+    "Image": "https://images.unsplash.com/photo-1581090700227-4c4d04f17f2b?w=300&h=200&fit=crop",
+    "Insert_Date": "2025-09-27T16:45:00Z",
+    "News_Content": "संसद में नए बिल पर चर्चा हुई। सांसदों ने अपनी राय रखी। बिल अगले सत्र में पारित होने की उम्मीद है।",
+    "News_Source": "लोकसभा टीवी",
+    "News_Title": "संसद में नए बिल पर बहस",
+    "News_Id": "14",
+    "Slug": "parliament-bill-debate"
+  },
+  {
+    "Active_Flag": "Y",
+    "Categrory_Name": "घर",
+    "Image": "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=300&h=200&fit=crop",
+    "Insert_Date": "2025-09-27T15:00:00Z",
+    "News_Content": "घर की सुरक्षा के लिए नए स्मार्ट उपकरण लॉन्च किए गए। कैमरे और अलार्म सिस्टम अब अधिक सस्ते और प्रभावी हैं।",
+    "News_Source": "होम सिक्योरिटी न्यूज़",
+    "News_Title": "घर की सुरक्षा में तकनीक",
+    "News_Id": "15",
+    "Slug": "home-security-tech"
+  },
+  {
+    "Active_Flag": "Y",
+    "Categrory_Name": "व्यापार समाचार",
+    "Image": "https://images.unsplash.com/photo-1581092335431-d09f4f2b8b4d?w=300&h=200&fit=crop",
+    "Insert_Date": "2025-09-27T14:30:00Z",
+    "News_Content": "ई-कॉमर्स कंपनियों की सेल में रिकॉर्ड बिक्री हुई। ग्राहकों ने भारी मात्रा में उत्पाद खरीदे।",
+    "News_Source": "बिजनेस स्टैंडर्ड",
+    "News_Title": "ई-कॉमर्स सेल में रिकॉर्ड बिक्री",
+    "News_Id": "16",
+    "Slug": "ecommerce-sale-record"
+  },
+  {
+    "Active_Flag": "Y",
+    "Categrory_Name": "शेयर बाज़ार",
+    "Image": "https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=300&h=200&fit=crop",
+    "Insert_Date": "2025-09-27T13:15:00Z",
+    "News_Content": "सोने और चांदी के भाव में बढ़ोतरी हुई। निवेशकों का रुझान कीमती धातुओं की ओर बढ़ा।",
+    "News_Source": "बिजनेस न्यूज़",
+    "News_Title": "सोने-चांदी के भाव में बढ़ोतरी",
+    "News_Id": "17",
+    "Slug": "gold-silver-prices"
+  },
+  {
+    "Active_Flag": "Y",
+    "Categrory_Name": "राष्ट्रीय समाचार",
+    "Image": "https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=300&h=200&fit=crop",
+    "Insert_Date": "2025-09-27T12:00:00Z",
+    "News_Content": "भारतीय सेना ने नए हथियारों का परीक्षण किया। यह देश की सुरक्षा क्षमता को मजबूत करेगा।",
+    "News_Source": "ऑल इंडिया रेडियो",
+    "News_Title": "भारतीय सेना का सफल परीक्षण",
+    "News_Id": "18",
+    "Slug": "army-weapons-test"
+  },
+  {
+    "Active_Flag": "Y",
+    "Categrory_Name": "सामान्य",
+    "Image": "https://images.unsplash.com/photo-1519681393784-d120267933ba?w=300&h=200&fit=crop",
+    "Insert_Date": "2025-09-27T11:00:00Z",
+    "News_Content": "शहर में कला प्रदर्शनी का आयोजन हुआ। कलाकारों ने अपनी कृतियों का प्रदर्शन किया।",
+    "News_Source": "कला समय",
+    "News_Title": "कला प्रदर्शनी में उमड़ा जनसैलाब",
+    "News_Id": "19",
+    "Slug": "art-exhibition"
+  },
+  {
+    "Active_Flag": "Y",
+    "Categrory_Name": "हालात",
+    "Image": "https://images.unsplash.com/photo-1581093458791-9d8ecbbb82d1?w=300&h=200&fit=crop",
+    "Insert_Date": "2025-09-27T10:00:00Z",
+    "News_Content": "स्वास्थ्य विभाग ने डेंगू पर रोकथाम अभियान शुरू किया। नागरिकों से साफ-सफाई रखने की अपील की।",
+    "News_Source": "स्वास्थ्य समाचार",
+    "News_Title": "डेंगू रोकथाम अभियान शुरू",
+    "News_Id": "20",
+    "Slug": "dengue-prevention"
+  },
+  {
+    "Active_Flag": "Y",
+    "Categrory_Name": "देश",
+    "Image": "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=300&h=200&fit=crop",
+    "Insert_Date": "2025-09-26T18:00:00Z",
+    "News_Content": "कृषि मंत्री ने किसानों के लिए नई योजनाओं की घोषणा की। इससे किसानों की आमदनी बढ़ने की उम्मीद है।",
+    "News_Source": "कृषि न्यूज़",
+    "News_Title": "किसानों के लिए नई योजनाएँ",
+    "News_Id": "21",
+    "Slug": "farmer-schemes"
+  },
+  {
+    "Active_Flag": "Y",
+    "Categrory_Name": "क्रिकेट",
+    "Image": "https://images.unsplash.com/photo-1599566150163-29194dcaad36?w=300&h=200&fit=crop",
+    "Insert_Date": "2025-09-26T16:00:00Z",
+    "News_Content": "पूर्व कप्तान ने कोचिंग में वापसी की। वे अब युवा खिलाड़ियों को प्रशिक्षित करेंगे।",
+    "News_Source": "क्रिकबज़",
+    "News_Title": "पूर्व कप्तान बने कोच",
+    "News_Id": "22",
+    "Slug": "ex-captain-coach"
+  },
+  {
+    "Active_Flag": "Y",
+    "Categrory_Name": "घर",
+    "Image": "https://images.unsplash.com/photo-1521783988139-8932f9f3e4eb?w=300&h=200&fit=crop",
+    "Insert_Date": "2025-09-26T14:00:00Z",
+    "News_Content": "रसोई की नई डिजाइन लोकप्रिय हो रही है। स्मार्ट किचन उपकरण अब अधिक सुलभ हैं।",
+    "News_Source": "होम स्टाइल",
+    "News_Title": "स्मार्ट किचन का चलन",
+    "News_Id": "23",
+    "Slug": "smart-kitchen"
+  },
+  {
+    "Active_Flag": "Y",
+    "Categrory_Name": "व्यापार समाचार",
+    "Image": "https://images.unsplash.com/photo-1556740749-887f6717d7e4?w=300&h=200&fit=crop",
+    "Insert_Date": "2025-09-26T13:30:00Z",
+    "News_Content": "टेक्नोलॉजी कंपनियों ने नए प्रोडक्ट लॉन्च किए। ग्राहकों में उत्साह देखा गया।",
+    "News_Source": "टेक न्यूज़",
+    "News_Title": "नई टेक्नोलॉजी प्रोडक्ट्स लॉन्च",
+    "News_Id": "24",
+    "Slug": "new-tech-products"
   }
 ]

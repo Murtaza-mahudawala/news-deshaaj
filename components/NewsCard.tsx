@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 
 interface NewsCardProps {
   news: {
@@ -15,14 +16,15 @@ interface NewsCardProps {
 export default function NewsCard({ news }: NewsCardProps) {
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
-    const day = date.getDate();
-    const month = date.getMonth() + 1;
-    const year = date.getFullYear();
+    const day = date.getUTCDate();
+    const month = date.getUTCMonth() + 1;
+    const year = date.getUTCFullYear();
     return `${day}/${month}/${year}`;
   };
 
   return (
-    <article className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300">
+    <Link href={`/news/${news.News_Id}`} className="block">
+      <article className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300">
       <div className="relative h-48 w-full">
         <Image
           src={news.Image}
@@ -35,7 +37,7 @@ export default function NewsCard({ news }: NewsCardProps) {
 
       <div className="p-4">
         <div className="mb-2">
-          <span className="inline-block px-3 py-1 text-xs font-semibold text-blue-600 bg-blue-100 rounded-full">
+          <span className="inline-block px-3 py-1 text-xs font-semibold text-white bg-red-600 rounded-full">
             {news.Categrory_Name}
           </span>
         </div>
@@ -63,6 +65,7 @@ export default function NewsCard({ news }: NewsCardProps) {
           </span>
         </div>
       </div>
-    </article>
+      </article>
+    </Link>
   );
 }
