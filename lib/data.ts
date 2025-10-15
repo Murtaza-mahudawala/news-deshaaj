@@ -1,7 +1,7 @@
-// Data utility functions for news data
-// Note: In production, this would typically fetch from an API or database
-// For now, we'll use a static import from the data directory in the project root
-import newsData from '../data/news.json';
+// Data utility functions
+// NOTE: Local static JSON has been disabled. Use the API client `fetchContentData` from `lib/api.ts` in server components/pages.
+// To minimize changes to existing components that import these helpers, we provide lightweight synchronous stubs
+// that return empty arrays. Server pages should call the API client and map results into the shape expected by components.
 
 export interface NewsItem {
   Active_Flag: string;
@@ -12,42 +12,30 @@ export interface NewsItem {
   News_Source: string;
   News_Title: string;
   News_Id: string;
-  Slug: string;
+  Slug?: string;
 }
 
-// Get all news data
+// Synchronous stubs (return no data). These exist only to avoid breaking client-side imports.
 export function getAllNews(): NewsItem[] {
-  return newsData as NewsItem[];
+  return [];
 }
 
-// Get news by category
 export function getNewsByCategory(categoryName: string): NewsItem[] {
-  const allNews = getAllNews();
-  return allNews.filter(item => 
-    item.Active_Flag === 'Y' && 
-    item.Categrory_Name === categoryName
-  );
+  return [];
 }
 
-// Get news by ID
 export function getNewsById(id: string): NewsItem | undefined {
-  const allNews = getAllNews();
-  return allNews.find(item => item.News_Id === id);
+  return undefined;
 }
 
-// Get active news only
 export function getActiveNews(): NewsItem[] {
-  const allNews = getAllNews();
-  return allNews.filter(item => item.Active_Flag === 'Y');
+  return [];
 }
 
-// Get featured news (first 7 active news items)
 export function getFeaturedNews(): NewsItem[] {
-  const activeNews = getActiveNews();
-  return activeNews.slice(0, 7);
+  return [];
 }
 
-// Get news chunks for pagination
 export function getNewsChunks(news: NewsItem[], chunkSize: number = 8): NewsItem[][] {
   const chunks: NewsItem[][] = [];
   for (let i = 0; i < news.length; i += chunkSize) {

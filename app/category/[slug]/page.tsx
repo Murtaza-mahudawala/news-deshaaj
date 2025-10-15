@@ -4,7 +4,8 @@ import NewsCard from '@/components/NewsCard';
 import AdSection from '@/components/AdSection';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import Footer from '@/components/Footer';
-import { getNewsByCategory, getNewsChunks, NewsItem } from '@/lib/data';
+import { getNewsChunks, NewsItem } from '@/lib/data';
+import { fetchContentData } from '@/lib/api';
 
 // NewsItem interface is now imported from @/lib/data
 
@@ -16,6 +17,9 @@ const categoryMap: Record<string, { name: string; title: string }> = {
   business: { name: 'व्यापार समाचार', title: 'व्यापार समाचार' },
   national: { name: 'राष्ट्रीय समाचार', title: 'राष्ट्रीय समाचार' },
   stock: { name: 'शेयर बाज़ार', title: 'शेयर बाज़ार समाचार' },
+  it: { name: 'तकनीक', title: 'तकनीक समाचार' },
+  technology: { name: 'तकनीक', title: 'तकनीक समाचार' },
+  utility: { name: 'सामान्य', title: 'सामान्य समाचार' },
 };
 
 export function generateStaticParams() {
@@ -24,7 +28,7 @@ export function generateStaticParams() {
   }));
 }
 
-export default function CategoryPage({ params }: { params: { slug: string } }) {
+export default async function CategoryPage({ params }: { params: { slug: string } }) {
   const category = categoryMap[params.slug];
 
   if (!category) {
@@ -48,7 +52,9 @@ export default function CategoryPage({ params }: { params: { slug: string } }) {
     );
   }
 
-  const filteredNews = getNewsByCategory(category.name)
+  const { news } = await fetchContentData();
+  const filteredNews = news
+    .filter((n) => n.Categrory_Name === category.name)
     .sort((a, b) => new Date(b.Insert_Date).getTime() - new Date(a.Insert_Date).getTime());
 
   const newsChunks = getNewsChunks(filteredNews, 8);

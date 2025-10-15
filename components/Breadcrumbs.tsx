@@ -1,9 +1,7 @@
 "use client";
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { getAllNews, NewsItem } from '@/lib/data';
-
-// NewsItem type is now imported from @/lib/data
+import { useEffect, useState } from 'react';
 
 // Category mapping to match the category page slugs
 const categoryMap: Record<string, { name: string; title: string }> = {
@@ -14,6 +12,7 @@ const categoryMap: Record<string, { name: string; title: string }> = {
   business: { name: 'व्यापार समाचार', title: 'व्यापार समाचार' },
   national: { name: 'राष्ट्रीय समाचार', title: 'राष्ट्रीय समाचार' },
   stock: { name: 'शेयर बाज़ार', title: 'शेयर बाज़ार समाचार' },
+  it: { name: 'तकनीक', title: 'तकनीक समाचार' },
 };
 
 // Helper function to get category slug from category name
@@ -27,17 +26,42 @@ interface BreadcrumbItem {
   href: string;
 }
 
-function getBreadcrumbs(path: string, news: NewsItem[]): BreadcrumbItem[] {
-  const parts = path.split('/').filter(Boolean);
+export default function Breadcrumbs() {
+  const pathname = usePathname();
+  const [newsMap, setNewsMap] = useState<Record<string, { title: string; category: string }>>({});
+
+  // Fetch minimal news metadata client-side so breadcrumbs can show article titles
+  useEffect(() => {
+    const api = process.env.NEXT_PUBLIC_API_URL || 'https://newsapi.timesmed.com/WebAPI/getnewslist?siteId=26&language=Hindi';
+    let mounted = true;
+    (async () => {
+      try {
+        const res = await fetch(api);
+        if (!res.ok) return;
+        const json = await res.json();
+        const payload = json.data || json;
+        const newsArr = Array.isArray(payload.news) ? payload.news : [];
+        const map: Record<string, { title: string; category: string }> = {};
+        newsArr.forEach((n: any) => {
+          const id = String(n.news_Id || n.News_Id || n.newsId || n.News_Id || n.newsId);
+          map[id] = {
+            title: n.news_Title || n.News_Title || n.title || '',
+            category: n.categrory_Name || n.Categrory_Name || n.category || '',
+          };
+        });
+        if (mounted) setNewsMap(map);
+      } catch (e) {
+        // ignore silently; breadcrumbs will fallback to slugs
+      }
+    })();
+    return () => { mounted = false; };
+  }, []);
+
+  const parts = pathname.split('/').filter(Boolean);
   const crumbs: BreadcrumbItem[] = [];
-
-  // Don't show breadcrumbs on home page
-  if (path === '/') {
-    return crumbs;
+  if (pathname !== '/') {
+    crumbs.push({ label: 'होम', href: '/' });
   }
-
-  // Add Home breadcrumb for other pages
-  crumbs.push({ label: 'होम', href: '/' });
 
   if (parts[0] === 'category' && parts[1]) {
     const categorySlug = parts[1];
@@ -48,25 +72,16 @@ function getBreadcrumbs(path: string, news: NewsItem[]): BreadcrumbItem[] {
       crumbs.push({ label: decodeURIComponent(categorySlug), href: `/category/${categorySlug}` });
     }
   }
-  
-  // If article page under /news/[id]
-  if (parts[0] === 'news' && parts[1]) {
-    const article = news.find(n => n.News_Id === parts[1]);
-    if (article) {
-      const categorySlug = getCategorySlug(article.Categrory_Name);
-      if (categorySlug) {
-        crumbs.push({ label: article.Categrory_Name, href: `/category/${categorySlug}` });
-      }
-      crumbs.push({ label: article.News_Title, href: `/news/${parts[1]}` });
-    }
-  }
-  return crumbs;
-}
 
-export default function Breadcrumbs() {
-  const pathname = usePathname();
-  const news = getAllNews();
-  const crumbs = getBreadcrumbs(pathname, news);
+  if (parts[0] === 'news' && parts[1]) {
+    const id = parts[1];
+    const meta = newsMap[id];
+    if (meta && meta.category) {
+      const categorySlug = getCategorySlug(meta.category);
+      if (categorySlug) crumbs.push({ label: meta.category, href: `/category/${categorySlug}` });
+    }
+    crumbs.push({ label: meta?.title || `प्रस्तुति`, href: `/news/${id}` });
+  }
 
   return (
     <nav className="text-sm text-gray-600 my-2" aria-label="Breadcrumb">

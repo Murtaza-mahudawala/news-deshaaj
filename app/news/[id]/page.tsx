@@ -1,19 +1,21 @@
 import Navbar from '@/components/Navbar';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import Footer from '@/components/Footer';
-import { getNewsById, getAllNews, NewsItem } from '@/lib/data';
+import { NewsItem } from '@/lib/data';
+import { fetchContentData } from '@/lib/api';
 import Image from 'next/image';
 import { clampHeadline, clampMetaDescription } from '@/lib/utils';
 
 // NewsItem interface is now imported from @/lib/data
 
-export function generateStaticParams() {
-  const news = getAllNews();
+export async function generateStaticParams() {
+  const { news } = await fetchContentData();
   return news.map((n) => ({ id: n.News_Id }));
 }
 
-export default function NewsDetailPage({ params }: { params: { id: string } }) {
-  const item = getNewsById(params.id);
+export default async function NewsDetailPage({ params }: { params: { id: string } }) {
+  const { news } = await fetchContentData();
+  const item = news.find((n) => n.News_Id === params.id);
 
   if (!item) {
     return (
