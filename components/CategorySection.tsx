@@ -9,12 +9,14 @@ interface CategorySectionProps {
   categoryName: string;
   news: NewsItem[];
   viewAllLink: string;
+  /** How many items to show for this section (default: 4) */
+  maxItems?: number;
 }
 
-export default function CategorySection({ title, categoryName, news, viewAllLink }: CategorySectionProps) {
+export default function CategorySection({ title, categoryName, news, viewAllLink, maxItems = 4 }: CategorySectionProps) {
   const filteredNews = news
-    .filter(item => item.Active_Flag === 'Y' && item.Categrory_Name === categoryName)
-    .slice(0, 4);
+    .filter((item) => item.Active_Flag === 'Y' && item.Categrory_Name === categoryName)
+    .slice(0, maxItems);
 
   if (filteredNews.length === 0) return null;
 
@@ -37,9 +39,11 @@ export default function CategorySection({ title, categoryName, news, viewAllLink
         </Link>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        {filteredNews.map((newsItem) => (
-          <NewsCard key={newsItem.News_Id} news={newsItem} />
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-6">
+        {filteredNews.map((newsItem, idx) => (
+          <div key={newsItem.News_Id} className={idx === 0 ? 'lg:col-span-6' : 'lg:col-span-3'}>
+            <NewsCard news={newsItem} />
+          </div>
         ))}
       </div>
     </section>

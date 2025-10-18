@@ -115,51 +115,86 @@ export async function fetchContentData(): Promise<{ news: NewsItem[]; videos: Ap
     console.info(`NEXT_PUBLIC_API_URL सेट नहीं है — डेवलपमेंट में डिफ़ॉल्ट API का उपयोग कर रहे हैं: ${fallback}`);
   }
 
-  try {
   // Support short server-side caching / ISR via NEXT_PUBLIC_API_REVALIDATE (seconds)
   const revalidateSec = Number(process.env.NEXT_PUBLIC_API_REVALIDATE || 0);
-  const fetchOpts: RequestInit = revalidateSec > 0 ? { next: { revalidate: revalidateSec } as any } : { cache: 'no-store' };
-  const res = await fetch(base, fetchOpts);
-    if (!res.ok) {
-      console.error('API से डेटा प्राप्त करने में त्रुटि:', res.statusText);
+  const fetchOpts: RequestInit = revalidateSec > 0 ? ({ next: { revalidate: revalidateSec } } as any) : ({ cache: 'no-store' } as RequestInit);
+
+  // Simple in-memory cache & in-flight dedupe to avoid duplicate network requests during dev hot reloads
+  const cacheKey = `${base}::${revalidateSec}`;
+  // eslint-disable-next-line @typescript-eslint/ban-types
+  const globalAny = global as any;
+  if (!globalAny.__content_cache) globalAny.__content_cache = new Map<string, { ts: number; data: any }>();
+  if (!globalAny.__content_inflight) globalAny.__content_inflight = new Map<string, Promise<any>>();
+
+  // return cached if still valid (revalidateSec > 0)
+  const cached = globalAny.__content_cache.get(cacheKey);
+  if (cached && revalidateSec > 0 && Date.now() - cached.ts < revalidateSec * 1000) {
+    return cached.data;
+  }
+
+  // if there's an in-flight fetch for the same key, wait for it
+  if (globalAny.__content_inflight.has(cacheKey)) {
+    return await globalAny.__content_inflight.get(cacheKey);
+  }
+
+  const inflight = (async () => {
+    try {
+      const res = await fetch(base, fetchOpts);
+      if (!res.ok) {
+        console.error('API से डेटा प्राप्त करने में त्रुटि:', res.statusText);
+        return { news: [], videos: [], galleries: [] };
+      }
+
+      const json = await res.json();
+      const payload: any = json.data || json;
+
+      const apiNews: ApiNewsItem[] = Array.isArray(payload.news) ? payload.news : [];
+      const apiVideos: ApiVideoItem[] = Array.isArray(payload.videos) ? payload.videos : [];
+      const apiGalleries: ApiGalleryItem[] = Array.isArray(payload.galleries) ? payload.galleries : [];
+
+      const news = apiNews.map(mapNews);
+      const videos = apiVideos.map((v) => ({ ...v, fileName: normalizeYoutubeEmbed(v.fileName || '') }));
+
+      const galleries = apiGalleries.map((g) => {
+        const detailList: ApiGalleryDetail[] = Array.isArray((g as any).galleryDetailList)
+          ? (g as any).galleryDetailList
+          : Array.isArray((g as any).gallery_DetailList)
+          ? (g as any).gallery_DetailList
+          : Array.isArray((g as any).galleryDetail)
+          ? (g as any).galleryDetail
+          : [];
+
+        const normalizedDetails = detailList.map((d: any) => ({ fileName: d.fileName || d.FileName || d.file_name || '' }));
+
+        const rawTitle = (g as any).galleryMaster_Title || (g as any).galleryMasterTitle || (g as any).galleryMaster || '';
+        return {
+          galleryMaster_id: (g as any).galleryMaster_id || (g as any).galleryMasterId || '',
+          galleryMaster_Title: sanitizeTitle(rawTitle),
+          galleryDetailList: normalizedDetails,
+        } as ApiGalleryItem;
+      });
+
+      const result = { news, videos, galleries };
+
+      // store in cache
+      try {
+        globalAny.__content_cache.set(cacheKey, { ts: Date.now(), data: result });
+      } catch (e) {
+        // ignore cache set errors
+      }
+      return result;
+    } catch (err) {
+      console.error('डेटा लोड करने में त्रुटि हुई।', err);
       return { news: [], videos: [], galleries: [] };
     }
+  })();
 
-    const json = await res.json();
-    const payload: any = json.data || json;
-
-    const apiNews: ApiNewsItem[] = Array.isArray(payload.news) ? payload.news : [];
-  const apiVideos: ApiVideoItem[] = Array.isArray(payload.videos) ? payload.videos : [];
-  const apiGalleries: ApiGalleryItem[] = Array.isArray(payload.galleries) ? payload.galleries : [];
-
-  const news = apiNews.map(mapNews);
-    // normalize video fileName to embed URL where possible
-    const videos = apiVideos.map((v) => ({ ...v, fileName: normalizeYoutubeEmbed(v.fileName || '') }));
-
-    // normalize galleries: support alternate property names like gallery_DetailList
-    const galleries = apiGalleries.map((g) => {
-      const detailList: ApiGalleryDetail[] = Array.isArray((g as any).galleryDetailList)
-        ? (g as any).galleryDetailList
-        : Array.isArray((g as any).gallery_DetailList)
-        ? (g as any).gallery_DetailList
-        : Array.isArray((g as any).galleryDetail)
-        ? (g as any).galleryDetail
-        : [];
-
-      const normalizedDetails = detailList.map((d: any) => ({ fileName: d.fileName || d.FileName || d.file_name || '' }));
-
-      const rawTitle = (g as any).galleryMaster_Title || (g as any).galleryMasterTitle || (g as any).galleryMaster || '';
-      return {
-        galleryMaster_id: (g as any).galleryMaster_id || (g as any).galleryMasterId || '',
-        galleryMaster_Title: sanitizeTitle(rawTitle),
-        galleryDetailList: normalizedDetails,
-      } as ApiGalleryItem;
-    });
-
-    return { news, videos, galleries };
-  } catch (err) {
-    console.error('डेटा लोड करने में त्रुटि हुई।', err);
-    return { news: [], videos: [], galleries: [] };
+  globalAny.__content_inflight.set(cacheKey, inflight);
+  try {
+    const data = await inflight;
+    return data;
+  } finally {
+    globalAny.__content_inflight.delete(cacheKey);
   }
 }
 

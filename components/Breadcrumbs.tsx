@@ -27,31 +27,40 @@ interface BreadcrumbItem {
 }
 
 export default function Breadcrumbs() {
-  const pathname = usePathname();
+  const pathname = usePathname() || '/';
   const [newsMap, setNewsMap] = useState<Record<string, { title: string; category: string }>>({});
+  const [categories, setCategories] = useState<Array<{ id: string; label: string; value: string; href: string }>>([]);
 
-  // Fetch minimal news metadata client-side so breadcrumbs can show article titles
+  // Fetch canonical categories + minimal news metadata from our own API route
   useEffect(() => {
-    const api = process.env.NEXT_PUBLIC_API_URL || 'https://newsapi.timesmed.com/WebAPI/getnewslist?siteId=26&language=Hindi';
     let mounted = true;
     (async () => {
       try {
-        const res = await fetch(api);
+        const res = await fetch('/api/content');
         if (!res.ok) return;
         const json = await res.json();
         const payload = json.data || json;
-        const newsArr = Array.isArray(payload.news) ? payload.news : [];
-        const map: Record<string, { title: string; category: string }> = {};
-        newsArr.forEach((n: any) => {
-          const id = String(n.news_Id || n.News_Id || n.newsId || n.News_Id || n.newsId);
-          map[id] = {
-            title: n.news_Title || n.News_Title || n.title || '',
-            category: n.categrory_Name || n.Categrory_Name || n.category || '',
+        const apiNews = Array.isArray(payload.news) ? payload.news : Array.isArray(json.news) ? json.news : [];
+        const apiCats = Array.isArray(payload.categories) ? payload.categories : Array.isArray(json.categories) ? json.categories : [];
+
+        const nmap: Record<string, { title: string; category: string }> = {};
+        apiNews.forEach((n: any) => {
+          const id = String(n.News_Id || n.news_Id || n.newsId || n.id || '');
+          if (!id) return;
+          nmap[id] = {
+            title: n.News_Title || n.news_Title || n.title || '',
+            category: n.Categrory_Name || n.categrory_Name || n.category || '',
           };
         });
-        if (mounted) setNewsMap(map);
+
+        if (mounted) {
+          setNewsMap(nmap);
+          setCategories(
+            apiCats.map((c: any) => ({ id: String(c.id || c.value || ''), label: String(c.label || c.value || ''), value: String(c.value || ''), href: String(c.href || '') }))
+          );
+        }
       } catch (e) {
-        // ignore silently; breadcrumbs will fallback to slugs
+        // ignore silently; fallbacks below will still work
       }
     })();
     return () => { mounted = false; };
@@ -59,41 +68,55 @@ export default function Breadcrumbs() {
 
   const parts = pathname.split('/').filter(Boolean);
   const crumbs: BreadcrumbItem[] = [];
-  if (pathname !== '/') {
-    crumbs.push({ label: 'होम', href: '/' });
-  }
+  if (pathname !== '/') crumbs.push({ label: 'होम', href: '/' });
 
+  // Category page: /category/:slug
   if (parts[0] === 'category' && parts[1]) {
     const categorySlug = parts[1];
-    const categoryInfo = categoryMap[categorySlug];
-    if (categoryInfo) {
-      crumbs.push({ label: categoryInfo.name, href: `/category/${categorySlug}` });
-    } else {
-      crumbs.push({ label: decodeURIComponent(categorySlug), href: `/category/${categorySlug}` });
-    }
+    const found = categories.find((c) => c.id === categorySlug || c.href.endsWith(`/${categorySlug}`) || encodeURIComponent(c.label) === categorySlug || c.value === categorySlug);
+    if (found) crumbs.push({ label: found.label || decodeURIComponent(categorySlug), href: `/category/${categorySlug}` });
+    else crumbs.push({ label: decodeURIComponent(categorySlug), href: `/category/${categorySlug}` });
   }
 
+  // News detail page: /news/:id
   if (parts[0] === 'news' && parts[1]) {
     const id = parts[1];
     const meta = newsMap[id];
     if (meta && meta.category) {
-      const categorySlug = getCategorySlug(meta.category);
-      if (categorySlug) crumbs.push({ label: meta.category, href: `/category/${categorySlug}` });
+      // try to resolve category via fetched categories
+      const cat = categories.find((c) => c.value === meta.category || c.label === meta.category || c.id === getCategorySlug(meta.category));
+      if (cat) crumbs.push({ label: cat.label || meta.category, href: cat.href || `/category/${cat.id}` });
+      else {
+        const slug = getCategorySlug(meta.category);
+        if (slug) crumbs.push({ label: meta.category, href: `/category/${slug}` });
+        else crumbs.push({ label: meta.category, href: `/category/${encodeURIComponent(meta.category)}` });
+      }
     }
     crumbs.push({ label: meta?.title || `प्रस्तुति`, href: `/news/${id}` });
   }
 
   return (
-    <nav className="text-sm text-gray-600 my-2" aria-label="Breadcrumb">
-      <ol className="flex flex-wrap items-center gap-1">
-        {crumbs.map((crumb, idx) => (
-          <li key={crumb.href} className="flex items-center">
-            <Link href={crumb.href} className="hover:underline text-blue-600">
-              {crumb.label}
-            </Link>
-            {idx < crumbs.length - 1 && <span className="mx-1">/</span>}
-          </li>
-        ))}
+    <nav className="bg-white/50 backdrop-blur-sm rounded-md px-3 py-2 text-sm text-gray-600 my-2" aria-label="Breadcrumb">
+      <ol className="flex items-center gap-2">
+        {crumbs.map((crumb, idx) => {
+          const isLast = idx === crumbs.length - 1;
+          return (
+            <li key={`${crumb.href}-${idx}`} className="flex items-center">
+              {isLast ? (
+                <span className="text-gray-900 font-medium truncate max-w-[36ch]">{crumb.label}</span>
+              ) : (
+                <Link href={crumb.href} className="text-blue-600 hover:text-red-600 hover:underline truncate max-w-[28ch]">
+                  {crumb.label}
+                </Link>
+              )}
+              {!isLast && (
+                <svg className="w-3 h-3 text-gray-400 mx-2" viewBox="0 0 24 24" fill="none" aria-hidden>
+                  <path d="M9 6l6 6-6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              )}
+            </li>
+          );
+        })}
       </ol>
     </nav>
   );
