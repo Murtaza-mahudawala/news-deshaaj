@@ -35,14 +35,14 @@ export default function NewsCard({ news, fullHeight = true, compact = false }: N
     <Link href={`/news/${news.News_Id}`} className={`block ${fullHeight ? 'h-full' : ''}`}>
       <article className={`${fullHeight ? 'h-full' : ''} bg-white rounded-lg overflow-hidden transform hover:-translate-y-1 hover:shadow-2xl transition-all duration-300 flex flex-col border border-gray-100`}>
         {/* Image */}
-  <div className={compact ? 'relative w-full h-28 sm:h-32 md:h-28 lg:h-32 bg-gray-100' : 'relative w-full h-48 sm:h-56 md:h-44 lg:h-48 bg-gray-100'}>
+  <div className={compact ? 'relative w-full h-36 sm:h-40 md:h-36 lg:h-44 bg-gray-100 flex items-center justify-center' : 'relative w-full h-64 sm:h-72 md:h-64 lg:h-72 bg-gray-100 flex items-center justify-center'}>
           {news.Image ? (
             <Image
               src={news.Image}
               alt={news.News_Title}
               fill
               sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-              className="object-cover"
+              className={compact ? 'object-contain object-center p-2' : 'object-cover object-center'}
             />
           ) : (
             <div className="absolute inset-0 flex items-center justify-center text-gray-400">छवि उपलब्ध नहीं</div>

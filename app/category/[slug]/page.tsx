@@ -36,13 +36,36 @@ export default async function CategoryPage({ params, searchParams }: { params: {
 
   const { slugify } = await import('@/lib/utils');
 
+  // decode the incoming slug to be robust against percent-encoding
+  const rawParam = (() => {
+    try {
+      return decodeURIComponent(params.slug || '');
+    } catch (e) {
+      return params.slug || '';
+    }
+  })();
+
   let categoryName: string | undefined = undefined;
   if (categoryMap[params.slug]) {
     categoryName = categoryMap[params.slug].name;
   } else {
     // derive unique category names from news and try to match slug
     const names = Array.from(new Set((news || []).map((n) => n.Categrory_Name).filter(Boolean)));
-  const match = names.find((n) => slugify(n) === params.slug || encodeURIComponent(n) === params.slug || n === params.slug);
+
+    const match = names.find((n) => {
+      if (!n) return false;
+      const candidateSlug = slugify(n);
+      // try multiple robust comparisons: slugified, decoded param vs original, case-insensitive
+      if (candidateSlug === params.slug) return true;
+      if (candidateSlug === rawParam) return true;
+      if (candidateSlug.toLowerCase() === String(params.slug || '').toLowerCase()) return true;
+      if (n === rawParam) return true;
+      if (String(n).toLowerCase() === rawParam.toLowerCase()) return true;
+      // allow direct encoded comparison as a last resort
+      if (encodeURIComponent(n) === params.slug) return true;
+      return false;
+    });
+
     if (match) categoryName = match;
   }
 

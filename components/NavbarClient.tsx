@@ -74,7 +74,7 @@ export default function NavbarClient({ categories, loading, error }: { categorie
                     <>
                       {visible.map((category) => {
                 // Defensive: skip rendering categories that would link to '/category' or have empty hrefs
-                        if (!category || !category.href || category.href === '/category' || category.href === '/category/') {
+                            if (!category || !category.href || category.href === '/category' || category.href === '/category/' || (category as any).count === 0) {
                           try {
                             console.warn('NavbarClient: skipping invalid category href', category);
                           } catch {}
@@ -118,11 +118,13 @@ export default function NavbarClient({ categories, loading, error }: { categorie
                               {overflow.length === 0 ? (
                                 <div className="px-4 py-2 text-sm text-gray-500">कोई श्रेणियाँ नहीं</div>
                               ) : (
-                                overflow.map((c) => (
-                                  <a key={c.id} href={c.href} onClick={(e) => { e.preventDefault(); setIsMoreOpen(false); try { console.info('More menu click -> href=', c.href); } catch {} ; router.push(c.href); }} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-red-600 transition-colors">
-                                    {c.label}
-                                  </a>
-                                ))
+                                overflow
+                                  .filter((c) => (c as any).count > 0 && c.href && c.href !== '/category' && c.href !== '/category/')
+                                  .map((c) => (
+                                    <a key={c.id} href={c.href} onClick={(e) => { e.preventDefault(); setIsMoreOpen(false); try { console.info('More menu click -> href=', c.href); } catch {} ; router.push(c.href); }} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-red-600 transition-colors">
+                                      {c.label}
+                                    </a>
+                                  ))
                               )}
                             </div>
                           </div>

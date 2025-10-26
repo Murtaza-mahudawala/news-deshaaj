@@ -27,23 +27,23 @@ export default function Navbar() {
 				const apiCats = Array.isArray(json.categories) ? json.categories : [];
 				if (!mounted) return;
 				if (apiCats.length) {
-					// Normalize and filter categories coming from the API.
-					// Skip any category that results in an empty slug (this would produce '/category' which 404s).
+					// Normalize categories coming from the API and only include those with a positive count.
 					const normalized = apiCats
 						.map((c: any) => {
 							const id = String(c.id || '').trim();
 							let href = String(c.href || '');
+							const count = Number(c.count || 0);
 							// normalize trailing slash (avoid '/category/')
 							if (href.endsWith('/') && href !== '/') href = href.slice(0, -1);
-							return { ...c, id, href };
+							return { ...c, id, href, count };
 						})
-						.filter((c: any) => c.id && c.id !== '' && !(c.href === '/category' || c.href === '/category/'));
+						.filter((c: any) => c.id && c.id !== '' && c.count > 0 && !(c.href === '/category' || c.href === '/category/'));
 
 					if (normalized.length) {
 						setCategories([{ id: 'home', label: 'सभी', value: '', href: '/' }, ...normalized]);
 					} else {
-						// categories were present but all normalized to empty slugs — warn and keep fallback
-						console.warn('Navbar: API categories contained empty or invalid slugs; using fallback categories', apiCats);
+						// categories were present but none had items — warn and keep fallback
+						console.warn('Navbar: API categories contained no items; using fallback categories', apiCats);
 					}
 				} else {
 					// no categories from API — keep fallback

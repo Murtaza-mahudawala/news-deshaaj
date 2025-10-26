@@ -17,10 +17,11 @@ export default async function BlogPage() {
         {blog.length === 0 ? (
           <p className="text-gray-600">कृपया प्रतीक्षा करें... सामग्री उपलब्ध नहीं है।</p>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          // fewer columns so cards are larger; use non-compact cards for better visuals
+          <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-8">
             {blog.map((b) => (
               <div key={b.News_Id}>
-                <BlogCard news={b} compact fullHeight={false} />
+                <BlogCard news={b} compact={false} fullHeight={false} />
               </div>
             ))}
           </div>
