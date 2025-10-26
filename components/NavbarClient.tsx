@@ -11,7 +11,9 @@ type Cat = { id: string; label: string; value: string; href: string };
 export default function NavbarClient({ categories, loading, error }: { categories: Cat[]; loading?: boolean; error?: string | null }) {
   const additionalPages = [
     { id: 'about', label: 'हमारे बारे में', href: '/about' },
-    { id: 'media', label: 'मीडिया गैलरी', href: '/media-gallery' },
+    { id: 'media-gallery', label: 'मीडिया गैलरी', href: '/media-gallery' },
+    { id: 'videos', label: 'यूट्यूब वीडियो', href: '/youtube-videos' },
+    { id: 'blog', label: 'ब्लॉग', href: '/blog' },
     { id: 'contact', label: 'संपर्क करें', href: '/contact' },
     { id: 'privacy', label: 'गोपनीयता नीति', href: '/privacy' },
     { id: 'terms', label: 'सेवा की शर्तें', href: '/terms' },

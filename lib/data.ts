@@ -8,7 +8,9 @@ export interface NewsItem {
   Categrory_Name: string;
   Image: string;
   Insert_Date: string;
+  // News_Content is a text snippet (HTML stripped). For full HTML use `News_Html` when available.
   News_Content: string;
+  News_Html?: string;
   News_Source: string;
   News_Title: string;
   News_Id: string;

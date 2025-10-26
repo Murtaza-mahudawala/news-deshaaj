@@ -1,7 +1,15 @@
+import { NewsItem } from './data';
+import { slugify } from './utils';
+
 export interface ApiNewsItem {
-  news_Id: number | string;
+  // API sometimes uses `news_id` (observed) and older code used `news_Id`.
+  // Accept both for compatibility and prefer `news_id` when mapping.
+  news_id?: number | string;
+  news_Id?: number | string;
   news_Title: string;
   slug?: string;
+  // API provides a short HTML summary in `news_Summary` and full HTML in `news_Content`.
+  news_Summary?: string;
   news_Content: string;
   image?: string;
   insert_Date?: string;
@@ -13,7 +21,9 @@ export interface ApiVideoItem {
   videoDetail_id: number | string;
   videoTitle: string;
   image?: string;
-  fileName: string; // may be embed URL or watch URL; we'll normalize to embed URL
+  fileName: string; // may be embed URL or watch URL; we'll normalize
+  videoEmbed?: string; // derived URLs we add during mapping
+  videoWatch?: string; // derived URLs we add during mapping
   insert_Date?: string;
 }
 
@@ -27,27 +37,68 @@ export interface ApiGalleryItem {
   galleryDetailList: ApiGalleryDetail[];
 }
 
+export interface ApiBlogItem {
+  blog_id: number | string;
+  blog_Title: string;
+  slug?: string;
+  blog_Summary?: string;
+  blog_Content: string;
+  image?: string;
+  insert_Date?: string;
+  blog_Source?: string;
+  category?: string;
+}
+
 export interface ContentData {
   news: ApiNewsItem[];
   videos: ApiVideoItem[];
   galleries: ApiGalleryItem[];
+  blog: ApiBlogItem[];
+}
+
+// Helper: map API blog to existing NewsItem shape used by components
+function mapBlog(apiItem: ApiBlogItem): NewsItem {
+  const raw = apiItem.blog_Summary || apiItem.blog_Content || '';
+  const cleanContent = String(raw).replace(/<[^>]*>/g, '').trim();
+
+  return {
+    Active_Flag: 'Y',
+    Categrory_Name: normalizeCategory(apiItem.category || apiItem.blog_Source || ''),
+    Image: apiItem.image || '',
+    Insert_Date: apiItem.insert_Date || '',
+    News_Content: cleanContent,
+    // Keep original HTML for detail pages
+    News_Html: apiItem.blog_Content || '',
+    News_Source: apiItem.blog_Source || 'Blog',
+    News_Title: apiItem.blog_Title || '',
+    News_Id: String(apiItem.blog_id || ''),
+    // Normalize slug so route matching is consistent
+    Slug: slugify(apiItem.slug || apiItem.blog_Title || String(apiItem.blog_id || '')) || undefined,
+  } as NewsItem;
 }
 
 // Helper: map API news to existing NewsItem shape used by components
-import { NewsItem } from './data';
 
 function mapNews(apiItem: ApiNewsItem): NewsItem {
+  // prefer API's `news_Summary` for a short snippet, fallback to full HTML content
+  const raw = apiItem.news_Summary || apiItem.news_Content || '';
+  const cleanContent = String(raw).replace(/<[^>]*>/g, '').trim();
+
+  const categoryRaw = apiItem.categrory_Name || (apiItem as any).category || '';
+  const id = apiItem.news_id || apiItem.news_Id || '';
+
   return {
     Active_Flag: 'Y',
-    Categrory_Name: normalizeCategory((apiItem as any).categrory_Name || (apiItem as any).category_Name || (apiItem as any).categroryName || ''),
-    Image: (apiItem as any).image || (apiItem as any).Image || '',
-    Insert_Date: (apiItem as any).insert_Date || (apiItem as any).insertDate || '',
-  News_Content: (apiItem as any).news_Content || (apiItem as any).newsContent || '',
-  News_Source: (apiItem as any).news_Source || (apiItem as any).newsSource || '',
-  News_Title: (apiItem as any).news_Title || (apiItem as any).newsTitle || '',
-  News_Id: String((apiItem as any).news_Id || (apiItem as any).newsId || ''),
-    Slug: apiItem.slug || (apiItem as any).Slug || undefined,
-  };
+    Categrory_Name: normalizeCategory(categoryRaw),
+    Image: apiItem.image || '',
+    Insert_Date: apiItem.insert_Date || '',
+    News_Content: cleanContent,
+    News_Html: apiItem.news_Content || '',
+    News_Source: apiItem.news_Source || '',
+    News_Title: apiItem.news_Title || '',
+    News_Id: String(id),
+    Slug: slugify(apiItem.slug || apiItem.news_Title || String(id || '')) || undefined,
+  } as NewsItem;
 }
 
 // Map common incoming category strings to the Hindi category names used in components
@@ -107,7 +158,35 @@ function normalizeYoutubeEmbed(url: string): string {
   return url;
 }
 
-export async function fetchContentData(): Promise<{ news: NewsItem[]; videos: ApiVideoItem[]; galleries: ApiGalleryItem[] }> {
+function extractYoutubeId(url: string): string | null {
+  if (!url) return null;
+  try {
+    const u = new URL(url);
+    if (u.hostname.includes('youtube.com')) {
+      const v = u.searchParams.get('v');
+      if (v) return v;
+      // sometimes path contains /embed/ID
+      const parts = u.pathname.split('/');
+      const embedIdx = parts.indexOf('embed');
+      if (embedIdx >= 0 && parts[embedIdx + 1]) return parts[embedIdx + 1];
+    }
+    if (u.hostname === 'youtu.be') {
+      return u.pathname.slice(1);
+    }
+  } catch (e) {
+    // not a full url, maybe it's an id already
+  }
+  // if looks like an id
+  if (/^[A-Za-z0-9_-]{6,}$/.test(url)) return url;
+  return null;
+}
+
+function makeYoutubeWatchUrl(urlOrId: string): string {
+  const id = extractYoutubeId(urlOrId);
+  return id ? `https://www.youtube.com/watch?v=${id}` : urlOrId;
+}
+
+export async function fetchContentData(): Promise<{ news: NewsItem[]; videos: ApiVideoItem[]; galleries: ApiGalleryItem[]; blog: NewsItem[] }> {
   // Use environment variable if present; otherwise fall back to the provided TimesMed API endpoint
   const fallback = 'https://newsapi.timesmed.com/WebAPI/getnewslist?siteId=26&language=Hindi';
   const base = process.env.NEXT_PUBLIC_API_URL || fallback;
@@ -116,8 +195,9 @@ export async function fetchContentData(): Promise<{ news: NewsItem[]; videos: Ap
   }
 
   // Support short server-side caching / ISR via NEXT_PUBLIC_API_REVALIDATE (seconds)
-  const revalidateSec = Number(process.env.NEXT_PUBLIC_API_REVALIDATE || 0);
-  const fetchOpts: RequestInit = revalidateSec > 0 ? ({ next: { revalidate: revalidateSec } } as any) : ({ cache: 'no-store' } as RequestInit);
+  // Default to 60s to avoid dynamic rendering and speed up navbar/categories.
+  const revalidateSec = Number(process.env.NEXT_PUBLIC_API_REVALIDATE || 60);
+  const fetchOpts: RequestInit = ({ next: { revalidate: revalidateSec } } as any);
 
   // Simple in-memory cache & in-flight dedupe to avoid duplicate network requests during dev hot reloads
   const cacheKey = `${base}::${revalidateSec}`;
@@ -142,7 +222,7 @@ export async function fetchContentData(): Promise<{ news: NewsItem[]; videos: Ap
       const res = await fetch(base, fetchOpts);
       if (!res.ok) {
         console.error('API से डेटा प्राप्त करने में त्रुटि:', res.statusText);
-        return { news: [], videos: [], galleries: [] };
+        return { news: [], videos: [], galleries: [], blog: [] };
       }
 
       const json = await res.json();
@@ -151,9 +231,21 @@ export async function fetchContentData(): Promise<{ news: NewsItem[]; videos: Ap
       const apiNews: ApiNewsItem[] = Array.isArray(payload.news) ? payload.news : [];
       const apiVideos: ApiVideoItem[] = Array.isArray(payload.videos) ? payload.videos : [];
       const apiGalleries: ApiGalleryItem[] = Array.isArray(payload.galleries) ? payload.galleries : [];
+      // API may return `blog` or `blogs` key — accept both
+      const apiBlog: ApiBlogItem[] = Array.isArray(payload.blogs)
+        ? payload.blogs
+        : Array.isArray(payload.blog)
+        ? payload.blog
+        : [];
 
       const news = apiNews.map(mapNews);
-      const videos = apiVideos.map((v) => ({ ...v, fileName: normalizeYoutubeEmbed(v.fileName || '') }));
+      const blog = apiBlog.map(mapBlog);
+      const videos = apiVideos.map((v) => ({
+        ...v,
+        fileName: v.fileName || '',
+        videoEmbed: normalizeYoutubeEmbed(v.fileName || ''),
+        videoWatch: makeYoutubeWatchUrl(v.fileName || ''),
+      }));
 
       const galleries = apiGalleries.map((g) => {
         const detailList: ApiGalleryDetail[] = Array.isArray((g as any).galleryDetailList)
@@ -174,7 +266,7 @@ export async function fetchContentData(): Promise<{ news: NewsItem[]; videos: Ap
         } as ApiGalleryItem;
       });
 
-      const result = { news, videos, galleries };
+      const result = { news, videos, galleries, blog };
 
       // store in cache
       try {
@@ -185,7 +277,7 @@ export async function fetchContentData(): Promise<{ news: NewsItem[]; videos: Ap
       return result;
     } catch (err) {
       console.error('डेटा लोड करने में त्रुटि हुई।', err);
-      return { news: [], videos: [], galleries: [] };
+      return { news: [], videos: [], galleries: [], blog: [] };
     }
   })();
 
