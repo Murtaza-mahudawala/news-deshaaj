@@ -5,6 +5,8 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { slugify } from '@/lib/utils';
 
+export const revalidate = 60;
+
 interface Props {
   params: { slug: string };
 }

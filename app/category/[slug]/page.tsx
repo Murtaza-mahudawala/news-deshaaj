@@ -10,6 +10,8 @@ import { fetchContentData } from '@/lib/api';
 
 // NewsItem interface is now imported from @/lib/data
 
+export const revalidate = 60;
+
 const categoryMap: Record<string, { name: string; title: string }> = {
   ghar: { name: 'घर', title: 'घर समाचार' },
   cricket: { name: 'क्रिकेट', title: 'क्रिकेट समाचार' },

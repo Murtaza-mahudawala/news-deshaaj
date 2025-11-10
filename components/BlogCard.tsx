@@ -41,13 +41,10 @@ export default function BlogCard({ news, fullHeight = true, compact = false }: B
           ) : (
             <div className="absolute inset-0 flex items-center justify-center text-gray-400">छवि उपलब्ध नहीं</div>
           )}
-          <div className="absolute top-3 left-3">
-            <span className="inline-block px-3 py-1 text-[11px] font-semibold text-white bg-red-600/95 backdrop-blur-sm rounded-full shadow-sm">{news.Categrory_Name}</span>
-          </div>
         </div>
 
         <div className={compact ? 'p-3 flex-1 flex flex-col gap-1' : 'p-4 flex-1 flex flex-col gap-2'}>
-          <h2 className={compact ? 'text-sm md:text-base font-semibold text-gray-900 leading-tight line-clamp-2' : 'text-base md:text-lg font-semibold text-gray-900 leading-tight line-clamp-2'} style={{ fontFamily: 'var(--font-roboto-slab)' }}>{news.News_Title}</h2>
+          <h2 className={compact ? 'text-sm md:text-base font-semibold text-gray-900 leading-tight line-clamp-2' : 'text-base md:text-lg font-semibold text-gray-900 leading-tight line-clamp-2'} style={{ fontFamily: 'var(--font-roboto-slab)' }}>{news.Categrory_Name} | {news.News_Title}</h2>
 
           <p className={compact ? 'text-xs text-gray-700 leading-relaxed line-clamp-2' : 'text-sm text-gray-700 leading-relaxed line-clamp-3'} style={{ fontFamily: 'var(--font-open-sans)' }}>{news.News_Content}</p>
 

@@ -9,6 +9,8 @@ import { clampHeadline, clampMetaDescription } from '@/lib/utils';
 
 // NewsItem interface is now imported from @/lib/data
 
+export const revalidate = 60;
+
 export async function generateStaticParams() {
   const { news } = await fetchContentData();
   return news.map((n) => ({ id: n.News_Id }));

@@ -22,9 +22,8 @@ export default function FeaturedNewsGrid({ news }: FeaturedNewsGridProps) {
             <Image src={primary.Image} alt={primary.News_Title} fill className="object-cover group-hover:scale-105 transition-transform" />
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
             <div className="absolute bottom-0 p-4">
-              <span className="text-xs font-semibold text-white/90 uppercase tracking-wide">{primary.Categrory_Name}</span>
               <h3 className="mt-2 text-white text-xl md:text-2xl font-extrabold leading-snug" style={{ fontFamily: 'var(--font-roboto-slab)' }}>
-                {primary.News_Title}
+                {primary.Categrory_Name} | {primary.News_Title}
               </h3>
             </div>
           </div>
@@ -38,9 +37,8 @@ export default function FeaturedNewsGrid({ news }: FeaturedNewsGridProps) {
                 <Image src={item.Image} alt={item.News_Title} fill className="object-cover group-hover:scale-105 transition-transform" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
                 <div className="absolute bottom-0 p-3">
-                  <span className="text-[10px] font-semibold text-white/90 uppercase tracking-wide">{item.Categrory_Name}</span>
                   <h4 className="mt-1 text-white text-sm font-bold leading-snug line-clamp-2" style={{ fontFamily: 'var(--font-roboto-slab)' }}>
-                    {item.News_Title}
+                    {item.Categrory_Name} | {item.News_Title}
                   </h4>
                 </div>
               </div>

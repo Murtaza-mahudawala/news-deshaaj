@@ -11,6 +11,8 @@ import { fetchContentData } from '@/lib/api';
 // We'll derive category sections from the API so the navbar and home sections stay in sync.
 import { slugify } from '@/lib/utils';
 
+export const revalidate = 60;
+
 export default async function Home() {
   const { news } = await fetchContentData();
 

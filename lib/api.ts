@@ -195,8 +195,8 @@ export async function fetchContentData(): Promise<{ news: NewsItem[]; videos: Ap
   }
 
   // Support short server-side caching / ISR via NEXT_PUBLIC_API_REVALIDATE (seconds)
-  // Default to 60s to avoid dynamic rendering and speed up navbar/categories.
-  const revalidateSec = Number(process.env.NEXT_PUBLIC_API_REVALIDATE || 60);
+  // Default to 30s to avoid dynamic rendering and speed up navbar/categories.
+  const revalidateSec = Number(process.env.NEXT_PUBLIC_API_REVALIDATE || 30);
   const fetchOpts: RequestInit = ({ next: { revalidate: revalidateSec } } as any);
 
   // Simple in-memory cache & in-flight dedupe to avoid duplicate network requests during dev hot reloads
