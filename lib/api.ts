@@ -240,6 +240,23 @@ export async function fetchContentData(): Promise<{ news: NewsItem[]; videos: Ap
 
       const news = apiNews.map(mapNews);
       const blog = apiBlog.map(mapBlog);
+      
+      // Deduplicate news and blog by News_Id to prevent content repetition
+      const uniqueNews = news.filter((item, index, arr) => 
+        arr.findIndex(n => n.News_Id === item.News_Id) === index
+      );
+      const uniqueBlog = blog.filter((item, index, arr) => 
+        arr.findIndex(b => b.News_Id === item.News_Id) === index
+      );
+      
+      // Log deduplication stats
+      if (news.length !== uniqueNews.length) {
+        console.info(`Deduplicated news: ${news.length} -> ${uniqueNews.length} (removed ${news.length - uniqueNews.length} duplicates)`);
+      }
+      if (blog.length !== uniqueBlog.length) {
+        console.info(`Deduplicated blog: ${blog.length} -> ${uniqueBlog.length} (removed ${blog.length - uniqueBlog.length} duplicates)`);
+      }
+      
       const videos = apiVideos.map((v) => ({
         ...v,
         fileName: v.fileName || '',
@@ -266,7 +283,7 @@ export async function fetchContentData(): Promise<{ news: NewsItem[]; videos: Ap
         } as ApiGalleryItem;
       });
 
-      const result = { news, videos, galleries, blog };
+      const result = { news: uniqueNews, videos, galleries, blog: uniqueBlog };
 
       // store in cache
       try {

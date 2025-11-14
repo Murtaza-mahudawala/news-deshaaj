@@ -7,12 +7,23 @@ type Cat = { id: string; label: string; value: string; href: string };
 
 import { slugify } from '@/lib/utils';
 
-export default function Navbar() {
-	const [categories, setCategories] = useState<Cat[]>([{ id: 'home', label: 'सभी', value: '', href: '/' }]);
-	const [loading, setLoading] = useState(true);
+interface NavbarProps {
+  initialCategories?: Cat[];
+}
+
+export default function Navbar({ initialCategories }: NavbarProps) {
+	const [categories, setCategories] = useState<Cat[]>(initialCategories || [{ id: 'home', label: 'सभी', value: '', href: '/' }]);
+	const [loading, setLoading] = useState(!initialCategories);
 	const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
+		// If categories were provided as props, use them and skip the fetch
+		if (initialCategories && initialCategories.length > 1) {
+			setCategories(initialCategories);
+			setLoading(false);
+			return;
+		}
+
 		let mounted = true;
 		async function load() {
 			try {

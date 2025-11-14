@@ -15,7 +15,7 @@ interface CategorySectionProps {
 
 export default function CategorySection({ title, categoryName, news, viewAllLink, maxItems = 4 }: CategorySectionProps) {
   const filteredNews = news
-    .filter((item) => item.Active_Flag === 'Y' && item.Categrory_Name === categoryName)
+    .filter((item) => item.Active_Flag === 'Y' && String(item.Categrory_Name).trim() === String(categoryName).trim())
     .slice(0, maxItems);
 
   if (filteredNews.length === 0) return null;

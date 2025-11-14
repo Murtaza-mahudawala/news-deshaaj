@@ -7,7 +7,18 @@ interface FeaturedNewsGridProps {
 }
 
 export default function FeaturedNewsGrid({ news }: FeaturedNewsGridProps) {
-  const items = news.slice(0, 7);
+  // pick up to one latest article per category (in order of the incoming list)
+  const items: NewsItem[] = [];
+  const seen = new Set<string>();
+  for (const n of news) {
+    const cat = String(n.Categrory_Name || '').trim();
+    if (!cat) continue;
+    if (!seen.has(cat)) {
+      seen.add(cat);
+      items.push(n);
+    }
+    if (items.length >= 7) break;
+  }
   if (items.length === 0) return null;
 
   const primary = items[0];
@@ -19,11 +30,20 @@ export default function FeaturedNewsGrid({ news }: FeaturedNewsGridProps) {
         {/* Primary large card */}
         <Link href={`/news/${primary.News_Id}`} className="relative group block md:col-span-1 md:row-span-2">
           <div className="relative h-64 md:h-full w-full overflow-hidden rounded-lg">
-            <Image src={primary.Image} alt={primary.News_Title} fill className="object-cover group-hover:scale-105 transition-transform" />
+            <Image 
+              src={primary.Image} 
+              alt={primary.News_Title} 
+              fill 
+              priority
+              placeholder="blur"
+              blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R+IRjWjBqO6O2mhP//Z"
+              className="object-cover group-hover:scale-105 transition-transform" 
+            />
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
             <div className="absolute bottom-0 p-4">
+              <span className="text-[10px] font-semibold text-white/90 uppercase tracking-wide">{primary.Categrory_Name}</span>
               <h3 className="mt-2 text-white text-xl md:text-2xl font-extrabold leading-snug" style={{ fontFamily: 'var(--font-roboto-slab)' }}>
-                {primary.Categrory_Name} | {primary.News_Title}
+                {primary.News_Title}
               </h3>
             </div>
           </div>
@@ -31,14 +51,23 @@ export default function FeaturedNewsGrid({ news }: FeaturedNewsGridProps) {
 
         {/* Right side grid (2 cols x 3 rows on md+) */}
         <div className="md:col-span-2 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 auto-rows-[180px] gap-4">
-          {rest.map((item) => (
+          {rest.map((item, index) => (
             <Link key={item.News_Id} href={`/news/${item.News_Id}`} className="relative group block">
               <div className="relative h-full w-full overflow-hidden rounded-lg">
-                <Image src={item.Image} alt={item.News_Title} fill className="object-cover group-hover:scale-105 transition-transform" />
+                <Image 
+                  src={item.Image} 
+                  alt={item.News_Title} 
+                  fill 
+                  priority={index < 2}
+                  placeholder="blur"
+                  blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R+IRjWjBqO6O2mhP//Z"
+                  className="object-cover group-hover:scale-105 transition-transform" 
+                />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
                 <div className="absolute bottom-0 p-3">
+                  <span className="text-[10px] font-semibold text-white/90 uppercase tracking-wide">{item.Categrory_Name}</span>
                   <h4 className="mt-1 text-white text-sm font-bold leading-snug line-clamp-2" style={{ fontFamily: 'var(--font-roboto-slab)' }}>
-                    {item.Categrory_Name} | {item.News_Title}
+                    {item.News_Title}
                   </h4>
                 </div>
               </div>
